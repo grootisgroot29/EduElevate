@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Welcome to My Website</h1>
+            <nav>
+                <ul>
+                    <li><a href="englishc81.html" class="btn-nav">English 1st Language</a></li>
+                    <li><a href="englishc82.html" class="btn-nav">English 2nd Language</a></li>
+                    <li><a href="mathc8.html" class="btn-nav">Maths</a></li>
+                    <li><a href="sciencec8.html" class="btn-nav">Science</a></li>
+                    <li><a href="hisc8.html" class="btn-nav">History</a></li>
+                    <li><a href="polc8.html" class="btn-nav">Political Science</a></li>
+                    <li><a href="sociologyc8.html" class="btn-nav">Sociology</a></li>
+                    <li><a href="geoc8.html" class="btn-nav">Geography</a></li>
+                    <li><a href="ecoc8.html" class="btn-nav">Economics</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="container">
+        <h2>Hello, Everyone!</h2>
+        <p>Explore various subjects by clicking the buttons above.</p>
+        <a href="about.html" class="btn">Learn More</a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Website. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Function to handle button click
+        function storeButtonText(button) {
+            const buttonText = button.textContent; // Get the text of the clicked button
+            localStorage.setItem("selectedSubject", buttonText); // Store it in localStorage
+            console.log(`Stored subject: ${buttonText}`); // Optional: Log for debugging
+        }
+    </script>
+</body>
+</html>

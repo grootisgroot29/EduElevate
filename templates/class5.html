@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Welcome to My Website</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('engc51') }}" class="btn-nav" onclick="storeButtonText(this)">English 1st Language</a></li>
+                    <li><a href="{{ url_for('engc52') }}" class="btn-nav" onclick="storeButtonText(this)">English 2nd Language</a></li>
+                    <li><a href="{{ url_for('mathc5') }}" class="btn-nav" onclick="storeButtonText(this)">Maths</a></li>
+                    <li><a href="{{ url_for('evs') }}" class="btn-nav" onclick="storeButtonText(this)">EVS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="container">
+        <h2>Hello, Everyone!</h2>
+        <p>Explore various subjects by clicking the buttons above.</p>
+        <a href="about.html" class="btn">Learn More</a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Website. All rights reserved.</p>
+        </div>
+    </footer>
+    <!--javascript functionality-->
+    <script>
+        // Function to handle button click
+        function storeButtonText(button) {
+            const subject= button.textContent; // Get the text of the clicked button
+            localStorage.setItem("subject", subject); // Store it in localStorage
+            console.log(`Stored subject: ${subject}`); // Optional: Log for debugging
+        }
+    </script>
+</body>
+</html>

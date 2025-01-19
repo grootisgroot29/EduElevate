@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <link rel="stylesheet" href="S.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>EduLearn</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="index.html#courses">Courses</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Subjects and Worksheets -->
+    <section id="subject-details">
+        <div class="container">
+            <h2 id="subject-title"></h2>
+            <ul id="notes-list"></ul>
+            <button onclick="showWorksheets()">Show Worksheets</button>
+
+            <div id="worksheets-section" style="display: none;">
+                <h3>Worksheets</h3>
+                <ul id="worksheets-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data for each course
+        const courses = {
+            Mathematics: {
+                title: "Mathematics",
+                notes: ["Algebra Notes", "Geometry Notes", "Trigonometry Notes"],
+                worksheets: ["Algebra Worksheet", "Geometry Worksheet", "Trigonometry Worksheet"]
+            },
+            Science: {
+                title: "Science",
+                notes: ["Physics Notes", "Chemistry Notes", "Biology Notes"],
+                worksheets: ["Physics Worksheet", "Chemistry Worksheet", "Biology Worksheet"]
+            },
+            English: {
+                title: "English",
+                notes: ["Grammar Notes", "Literature Notes", "Composition Notes"],
+                worksheets: ["Grammar Worksheet", "Literature Worksheet", "Composition Worksheet"]
+            },
+            Kannada: {
+                title: "Kannada",
+                notes: ["Kannada Grammar", "Kannada Literature", "Kannada Composition"],
+                worksheets: ["Kannada Grammar Worksheet", "Kannada Literature Worksheet", "Kannada Composition Worksheet"]
+            }
+        };
+
+        // Extract course name from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseName = urlParams.get('course');
+
+        if (courseName && courses[courseName]) {
+            const course = courses[courseName];
+            document.getElementById('subject-title').textContent = course.title;
+
+            // Populate the notes list
+            const notesList = document.getElementById('notes-list');
+            course.notes.forEach(note => {
+                const li = document.createElement('li');
+                li.textContent = note;
+                notesList.appendChild(li);
+            });
+        }
+
+        // Function to show worksheets
+        function showWorksheets() {
+            const selectedCourse = courses[courseName];
+
+            const worksheetsList = document.getElementById("worksheets-list");
+            worksheetsList.innerHTML = ''; // Clear previous worksheets
+            selectedCourse.worksheets.forEach(worksheet => {
+                const li = document.createElement('li');
+                li.textContent = worksheet;
+                worksheetsList.appendChild(li);
+            });
+
+            // Show the worksheets section
+            document.getElementById("worksheets-section").style.display = 'block';
+        }
+    </script>
+</body>
+</html>

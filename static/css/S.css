@@ -1,0 +1,408 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url('../imgs/CL.png'); /* Change this to the path of your background image */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: #fff;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+}
+
+header nav ul li a:hover {
+    background: #fff;
+    color: #333;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+#hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: rgba(0, 0, 0, 0.103); /* Dark overlay for background image */
+}
+
+#hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #f4f4f4;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #eaeaea;
+}
+
+#hero .btn {
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+#hero .btn:hover {
+    background: #f4f4f4;
+    color: #333;
+}
+
+/* Courses Section */
+#courses {
+    background: rgba(0, 0, 0, 0); /* Transparent background */
+    padding: 50px 0;
+    text-align: center;
+}
+
+#courses h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#courses ul {
+    list-style: none;
+}
+
+#courses ul li {
+    display: inline-block;
+    margin: 10px;
+}
+
+#courses ul li a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background: #fff;
+    color: #333;
+    border-radius: 5px;
+}
+
+#courses ul li a:hover {
+    background: #f4f4f4;
+    color: #000;
+}
+
+/* Subject Details Section */
+#subject-details {
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0);
+}
+
+#subject-details h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#subject-details ul {
+    list-style: none;
+}
+
+#subject-details ul li {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #f4f4f4;
+}
+
+#worksheets-section h3 {
+    margin-top: 30px;
+    color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background: #fff;
+    color: #333;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #f4f4f4;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    #hero h2 {
+        font-size: 2.5rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    #courses ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+/* Contact Section */
+
+#contact {
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0);
+    color: #fff;
+}
+
+#contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#contact p {
+    margin-bottom: 30px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    color: #333;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    background: #007bff; /* Blue button */
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+
+/* Class Selection Section */
+#class-selection {
+    text-align: center;
+    margin: 40px 0;
+}
+
+#class-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Math Class Page */
+#class1-math-notes h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#class1-math-notes ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#class1-math-notes ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#class1-math-notes ul li a {
+    color: #007BFF;
+}
+
+#class1-math-notes ul li a:hover {
+    color: #0056b3;
+}
+
+/* Button for Worksheets */
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+/* Math Worksheets Page */
+#math-content {
+    text-align: center;
+}
+
+#math-content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#math-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+#math-content ul li {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+#math-content ul li a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+#math-content ul li a:hover {
+    color: #0056b3;
+}
+/* Upload section styling */
+#uploadForm {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#uploadForm input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#uploadForm button {
+    padding: 10px 20px;
+    background-color: #5D9CEC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#uploadForm button:hover {
+    background-color: #4A86E8;
+}
+
+/* Download section styling */
+#fileList {
+    margin-top: 20px;
+    padding: 0;
+}
+
+#fileList li {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#fileList li a {
+    padding: 5px 10px;
+    background-color: #5D9CEC;
+    color: rgb(19, 18, 18);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#fileList li a:hover {
+    background-color: #4A86E8;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/courses.css') }}">
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src= "{{ url_for('static', filename='vid/cll.mp4') }}">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Welcome to the Courses Page</h1>
+            <p>Select your class to explore the courses.</p>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <section id="courses" class="container">
+        <div class="select-class">
+            <label for="classSelect">Choose Your Class:</label>
+            <select id="classSelect">
+                <option value="" disabled selected>Select Class</option>
+                <option value="{{ url_for('class5') }}">Class 5</option>
+                <option value="{{ url_for('class6') }}">Class 6</option>
+                <option value="{{ url_for('class7') }}">Class 7</option>
+                <option value="{{ url_for('class8') }}">Class 8</option>
+            </select>
+            <button id="goButton">Go</button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Courses Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript to Handle Navigation -->
+    <script>
+        document.getElementById("goButton").addEventListener("click", function() {
+            const class_number = document.getElementById("classSelect").value;
+            if (class_number) {
+                localStorage.setItem("class_number", class_number);
+                window.location.href = class_number; // Redirect to the selected class page
+            } else {
+                alert("Please select a class!");
+            }
+        });
+    </script>
+</body>
+</html>
+

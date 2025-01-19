@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths - Class 5</title>
+    <link rel="stylesheet" href="subjects.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Maths Part I- Class 5</h1>
+            <nav>
+                <ul>
+                    <li><a href="edu.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section id="chapters">
+        <div class="form-container">
+            <h2>Enter the Chapter and Exercise Number</h2>
+            <form id="chapterForm">
+                <input type="text" id="chapterInput" placeholder="Enter Chapter Number" required>
+                <input type="text" id="exerciseInput" placeholder="Enter Exercise Number" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // JavaScript function to store both chapter and exercise number in localStorage and trigger the scrape
+        function storeChapterAndExercise(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            // Get values from the inputs
+            const chapterNumber = document.getElementById('chapterInput').value.trim();
+            const exerciseNumber = document.getElementById('exerciseInput').value.trim();
+
+            // Validate inputs
+            if (!chapterNumber || !exerciseNumber) {
+                alert('Both Chapter and Exercise numbers are required.');
+                return;
+            }
+
+            // Store values in localStorage
+            localStorage.setItem('chapter', chapterNumber);
+            localStorage.setItem('exercise', exerciseNumber);
+
+            console.log('Stored Chapter:', chapterNumber);
+            console.log('Stored Exercise:', exerciseNumber); // For debugging purposes
+
+            // Trigger the scrape function after storing the data
+            scrapeChapter();
+
+            // Optionally, you can provide feedback to the user here
+            alert('Chapter and Exercise numbers have been saved and scraping triggered!');
+        }
+
+        // Function to call the Flask scrape API
+        function scrapeChapter() {
+            // Retrieve the class and subject from localStorage
+            const classNumber = localStorage.getItem('class');
+            const subject = localStorage.getItem('subject');
+            const chapter = localStorage.getItem('chapter');
+            const exercise = localStorage.getItem('exercise');
+
+            // Check if class, subject, chapter, and exercise are available in localStorage
+            if (!classNumber || !subject || !chapter || !exercise) {
+                alert('Class, Subject, Chapter, and Exercise are required. Please go back and fill them in.');
+                return;
+            }
+
+            // Prepare the data payload
+            const data = {
+                class: classNumber,
+                subject: subject,
+                chapter: chapter,
+                exercise: exercise
+            };
+
+            console.log('Sending request with data:', data);
+
+            // Call the Flask API endpoint
+            fetch('http://127.0.0.1:5000/scrape', { // Ensure Flask is running at this URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data), // Convert the payload to JSON
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(content => {
+                console.log('Scraped content:', content);
+                alert('Scraping successful! Check the console for content.');
+                // You can update the UI here to display scraped content
+            })
+            .catch(error => {
+                console.error('Scraping failed:', error);
+                alert('An error occurred during scraping. Check the console for details.');
+            });
+        }
+
+        // Add event listener to handle form submission
+        document.getElementById('chapterForm').addEventListener('submit', storeChapterAndExercise);
+    </script>
+</body>
+</html>

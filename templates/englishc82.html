@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English 2nd Language- Class 8</title>
+    <link rel="stylesheet" href="subjects.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>English 2nd Language- Class 8</h1>
+            <nav>
+                <ul>
+                    <li><a href="edu.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section id="chapters">
+        <div class="button-container">
+            <h2>CONTENT TYPE</h2>
+            <ul>
+                <li>
+                    <a href="poem.html" class="btn-nav" onclick="storeContentType('Poem')">
+                        <button type="button">Poem</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="prose.html" class="btn-nav" onclick="storeContentType('Prose')">
+                        <button type="button">Prose</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <style>
+        .button-container {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: inline;
+            margin: 10px;
+        }
+        .btn-nav button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .btn-nav button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Function to store the content type in localStorage
+        function storeContentType(contentType) {
+            localStorage.setItem('contentType', contentType);
+            console.log('Stored content type:', contentType); // For debugging purposes
+        }
+    </script>
+</body>
+</html>

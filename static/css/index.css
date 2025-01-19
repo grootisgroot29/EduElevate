@@ -1,0 +1,114 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Body Styling */
+  body {
+    line-height: 1.6;
+    color: #1a1c2a;
+    background: url('../imgs/CL.png') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Header Section */
+  header {
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Navigation Buttons */
+  header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    gap: 15px; /* Spacing between buttons */
+  }
+  
+  header nav ul li {
+    display: inline;
+  }
+  
+  header nav ul li a.btn-nav {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #011321; /* Button background color */
+    color: #ffffff; /* Text color */
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  header nav ul li a.btn-nav:hover {
+    background: #042a50; /* Hover background color */
+    transform: translateY(-3px); /* Slight hover lift effect */
+  }
+  
+  /* Welcome Section */
+  #welcome {
+    text-align: center;
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 80%;
+  }
+  
+  #welcome h2 {
+    font-size: 2.5rem;
+  }
+  
+  #welcome p {
+    margin: 15px 0;
+    font-size: 1.2rem;
+    color: #000000;
+  }
+  
+  #welcome .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #011321;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  #welcome .btn:hover {
+    background: #005bb5;
+  }
+  
+  /* Footer Section */
+  footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  

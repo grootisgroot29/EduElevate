@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Welcome to My Website</h1>
+            <nav>
+                <ul>
+                    <li><a href="englishc61.html" class="btn-nav">English 1st Language</a></li>
+                    <li><a href="englishc62.html" class="btn-nav">English 2nd Language</a></li>
+                    <li><a href="mathsc6.html" class="btn-nav">Maths</a></li>
+                    <li><a href="sciencec6.html" class="btn-nav">Science</a></li>
+                    <li><a href="socialc6.html" class="btn-nav">Social Science</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="container">
+        <h2>Hello, Everyone!</h2>
+        <p>Explore various subjects by clicking the buttons above.</p>
+        <a href="about.html" class="btn">Learn More</a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Website. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Function to handle button click
+        function storeButtonText(button) {
+            const buttonText = button.textContent; // Get the text of the clicked button
+            localStorage.setItem("selectedSubject", buttonText); // Store it in localStorage
+            console.log(`Stored subject: ${buttonText}`); // Optional: Log for debugging
+        }
+    </script>
+</body>
+</html>

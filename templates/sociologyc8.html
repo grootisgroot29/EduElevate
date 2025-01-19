@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociology - Class 8</title>
+    <link rel="stylesheet" href="subjects.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Sociology - Class 8</h1>
+            <nav>
+                <ul>
+                    <li><a href="edu.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <section id="chapters">
+        <div class="form-container">
+            <h2>Enter the Chapter</h2>
+            <form id="scrapeForm">
+                <input type="text" id="chapterInput" name="chapter" placeholder="Enter Chapter Number" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // JavaScript function to call the Flask scrape API
+function scrapeChapter() {
+    // Retrieve the class and subject from localStorage
+    const classNumber = localStorage.getItem('class');
+    const subject = localStorage.getItem('subject');
+    const chapter = document.getElementById('chapterInput').value.trim();
+    
+
+    // Check if class and subject are available in localStorage
+    if (!classNumber || !subject) {
+        alert('Class and Subject are required. Please go back and fill them in.');
+        return;
+    }
+
+    // Validate chapter input
+    if (!chapter) {
+        alert('Chapter is required!');
+        return;
+    }
+
+    // Prepare the data payload
+    const data = {
+        class: classNumber,
+        subject: subject,
+        chapter: chapter
+        
+    };
+
+    console.log('Sending request with data:', data);
+
+    // Call the Flask API endpoint
+    fetch('http://127.0.0.1:5000/scrape', { // Ensure Flask is running at this URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), // Convert the payload to JSON
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(content => {
+        console.log('Scraped content:', content);
+        alert('Scraping successful! Check the console for content.');
+        // You can update the UI here to display scraped content
+    })
+    .catch(error => {
+        console.error('Scraping failed:', error);
+        alert('An error occurred during scraping. Check the console for details.');
+    });
+}
+
+// Add event listener to the form submission
+document.getElementById('scrapeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    scrapeChapter(); // Trigger the scraping function
+});
+
+    </script>
+</body>
+</html>

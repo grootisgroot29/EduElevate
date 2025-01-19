@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics - Class 5</title>
+    <link rel="stylesheet" href="subjects.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Mathematics - Class 5</h1>
+            <nav>
+                <ul>
+                    <li><a href="edu.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="chapters">
+        <div class="button-container">
+            <h2>Part</h2>
+            <ul>
+                <li>
+                    <a href="part1.html" class="btn-nav" onclick="storePart('I')">
+                        <button type="button">I</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="part2.html" class="btn-nav" onclick="storePart('II')">
+                        <button type="button">II</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // JavaScript function to store the selected part in localStorage
+        function storePart(part) {
+            // Store the selected part in localStorage
+            localStorage.setItem('selectedPart', part);
+            console.log('Stored selected part:', part); // For debugging purposes
+        }
+    </script>
+</body>
+</html>
+
