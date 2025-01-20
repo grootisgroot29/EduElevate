@@ -91,72 +91,70 @@
             return classSubjects[classNumber]?.[subject] || [];
         }
     
-        // JavaScript function to call the Flask scrape API
         function scrape() {
-            // Retrieve the class and subject from localStorage
-            const class_number = localStorage.getItem('class_number');
-            const subject = localStorage.getItem('subject');
-            const chapter = document.getElementById('chapterInput').value.trim();
-            const contentType = localStorage.getItem('content_type');
-    
-            // Check if class and subject are available in localStorage
-            if (!class_number || !subject) {
-                alert('Class and Subject are required. Please go back and fill them in.');
-                return;
-            }
-    
-            // Validate chapter input
-            if (!chapter) {
-                alert('Chapter is required!');
-                return;
-            }
-    
-            // Determine required fields for the selected class and subject
-            const requiredFields = getRequiredFields(class_number, subject);
-            console.log('Required fields:', requiredFields);
-    
-            // Build the data payload dynamically based on required fields
-            const data = {};
-            if (requiredFields.includes("content_type")) {
-                data.content_type = contentType;
-            }
-            if (requiredFields.includes("chapter")) {
-                data.chapter = chapter;
-            }
-            data.class = class_number;
-            data.subject = subject;
-    
-            console.log('Sending request with data:', data);
-    
-            // Show the loading modal
-            showLoadingModal();
-    
-            // Call the Flask API endpoint
-            fetch('/scrape', { // Ensure Flask is running at this URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data), // Convert the payload to JSON
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Error ${response.status}: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(content => {
-                console.log('Scraped content:', content);
-                alert('Scraping successful! Check the console for content.');
-                displayModal(content);
-                hideLoadingModal();
-            })
-            .catch(error => {
-                console.error('Scraping failed:', error);
-                alert('An error occurred during scraping. Check the console for details.');
-                hideLoadingModal();
-            });
+    // Retrieve the class and subject from localStorage
+    const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '5';
+    const subject = localStorage.getItem('subject');
+    const contentType = localStorage.getItem('content_type');
+    const chapter = document.getElementById('chapterInput').value.trim();
+
+    // Validate required inputs
+    if (!class_number || !subject) {
+        alert('Class and Subject are required. Please go back and fill them in.');
+        return;
+    }
+
+    if (!chapter) {
+        alert('Chapter is required!');
+        return;
+    }
+
+    // Determine required fields for the selected class and subject
+    const requiredFields = getRequiredFields(class_number, subject);
+    console.log('Required fields:', requiredFields);
+
+    // Build the data payload dynamically based on required fields
+    const data = {};
+    if (requiredFields.includes("content_type")) {
+        data.content_type = contentType;
+    }
+    if (requiredFields.includes("chapter")) {
+        data.chapter = chapter;
+    }
+    data.class = class_number;
+    data.subject = subject;
+
+    console.log('Sending request with data:', data);
+
+    // Show the loading modal
+    showLoadingModal();
+
+    // Call the Flask API endpoint
+    fetch('/scrape', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
+        return response.json();
+    })
+    .then(content => {
+        console.log('Scraped content:', content);
+        displayModal(content);
+        hideLoadingModal();
+    })
+    .catch(error => {
+        console.error('Scraping failed:', error);
+        alert('An error occurred during scraping. Check the console for details.');
+        hideLoadingModal();
+    });
+}
+
     
         // Show the loading modal
         function showLoadingModal() {

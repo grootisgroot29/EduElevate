@@ -590,6 +590,9 @@ def index():
 @app.route('/courses')
 def courses():
     return render_template('courses.html')
+@app.route('/about')
+def about():
+    return render_template('about.html')
 @app.route('/class-5')
 def class5():
     return render_template('class5.html')
@@ -623,13 +626,14 @@ def Poem():
 @app.route('/class-5/English 1st Language/Prose')
 def Prose():
     return render_template('prose.html')
+
 @app.route('/scrape', methods=['POST'])
 def scrape():
     data = request.json
     app.logger.debug(f"Received data: {data}")
     class_number = data.get('class')
     subject = data.get('subject')
-    content_type = data.get('contentType')
+    content_type = data.get('content_type')
     chapter = data.get('chapter')
     part = data.get('part')
     exercise = data.get('exercise')

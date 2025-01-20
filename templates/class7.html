@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
     <!-- Header Section -->
@@ -13,11 +13,11 @@
             <h1>Welcome to My Website</h1>
             <nav>
                 <ul>
-                    <li><a href="englishc71.html" class="btn-nav">English 1st Language</a></li>
-                    <li><a href="englishc72.html" class="btn-nav">English 2nd Language</a></li>
-                    <li><a href="mathc7.html" class="btn-nav">Maths</a></li>
-                    <li><a href="sciencec7.html" class="btn-nav">Science</a></li>
-                    <li><a href="socialc7.html" class="btn-nav">Social Science</a></li>
+                    <li><a href="{{ url_for('englishc71') }}" class="btn-nav">English 1st Language</a></li>
+                    <li><a href="{{ url_for('englishc72') }}" class="btn-nav">English 2nd Language</a></li>
+                    <li><a href="{{ url_for('mathc7') }}" class="btn-nav">Maths</a></li>
+                    <li><a href="{{ url_for('sciencec7') }}" class="btn-nav">Science</a></li>
+                    <li><a href="{{ url_for('socialc7') }}" class="btn-nav">Social Science</a></li>
                 </ul>
             </nav>
         </div>
@@ -27,7 +27,7 @@
     <section id="welcome" class="container">
         <h2>Hello, Everyone!</h2>
         <p>Explore various subjects by clicking the buttons above.</p>
-        <a href="about.html" class="btn">Learn More</a>
+        <a href="{{ url_for('about') }}" class="btn">Learn More</a>
     </section>
 
     <!-- Footer Section -->
