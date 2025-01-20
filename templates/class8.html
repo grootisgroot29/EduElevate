@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
     <!-- Header Section -->
@@ -13,15 +13,15 @@
             <h1>Welcome to My Website</h1>
             <nav>
                 <ul>
-                    <li><a href="englishc81.html" class="btn-nav">English 1st Language</a></li>
-                    <li><a href="englishc82.html" class="btn-nav">English 2nd Language</a></li>
-                    <li><a href="mathc8.html" class="btn-nav">Maths</a></li>
-                    <li><a href="sciencec8.html" class="btn-nav">Science</a></li>
-                    <li><a href="hisc8.html" class="btn-nav">History</a></li>
-                    <li><a href="polc8.html" class="btn-nav">Political Science</a></li>
-                    <li><a href="sociologyc8.html" class="btn-nav">Sociology</a></li>
-                    <li><a href="geoc8.html" class="btn-nav">Geography</a></li>
-                    <li><a href="ecoc8.html" class="btn-nav">Economics</a></li>
+                    <li><a href="{{ url_for('englishc81') }}" class="btn-nav">English 1st Language</a></li>
+                    <li><a href="{{ url_for('englishc82') }}" class="btn-nav">English 2nd Language</a></li>
+                    <li><a href="{{ url_for('mathc8') }}" class="btn-nav">Maths</a></li>
+                    <li><a href="{{ url_for('sciencec8') }}" class="btn-nav">Science</a></li>
+                    <li><a href="{{ url_for('hisc8') }}" class="btn-nav">History</a></li>
+                    <li><a href="{{ url_for('polc8') }}" class="btn-nav">Political Science</a></li>
+                    <li><a href="{{ url_for('sociologyc8') }}" class="btn-nav">Sociology</a></li>
+                    <li><a href="{{ url_for('geoc8') }}" class="btn-nav">Geography</a></li>
+                    <li><a href="{{ url_for('ecoc8') }}" class="btn-nav">Economics</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,7 +31,7 @@
     <section id="welcome" class="container">
         <h2>Hello, Everyone!</h2>
         <p>Explore various subjects by clicking the buttons above.</p>
-        <a href="about.html" class="btn">Learn More</a>
+        <a href="{{ url_for('about') }}" class="btn">Learn More</a>
     </section>
 
     <!-- Footer Section -->

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English - Class 5</title>
-    <link rel="stylesheet" href="subjects.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
 </head>
 <body>
     <header>
@@ -13,8 +13,8 @@
             <nav>
                 <ul>
                     <li><a href="edu.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="{{ url_for('courses') }}">Courses</a></li>
+                    <li><a href="{{ url_for('contact') }}">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -26,12 +26,12 @@
             <h2>CONTENT TYPE</h2>
             <ul>
                 <li>
-                    <a href="poem.html" class="btn-nav" onclick="storeContentType('Poem')">
+                    <a href="{{ url_for('Poem') }}" class="btn-nav" onclick="storeContentType('Poem')">
                         <button type="button">Poem</button>
                     </a>
                 </li>
                 <li>
-                    <a href="prose.html" class="btn-nav" onclick="storeContentType('Prose')">
+                    <a href="{{ url_for('Prose') }}" class="btn-nav" onclick="storeContentType('Prose')">
                         <button type="button">Prose</button>
                     </a>
                 </li>

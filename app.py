@@ -626,6 +626,12 @@ def Poem():
 @app.route('/class-5/English 1st Language/Prose')
 def Prose():
     return render_template('prose.html')
+@app.route('/class-5/English 2nd Language/Poem')
+def Poem1():
+    return render_template('poem.html')
+@app.route('/class-5/English 2nd Language/Prose')
+def Prose1():
+    return render_template('prose.html')
 
 @app.route('/scrape', methods=['POST'])
 def scrape():
