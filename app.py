@@ -590,6 +590,9 @@ def index():
 @app.route('/courses')
 def courses():
     return render_template('courses.html')
+@app.route('/about')
+def courses():
+    return render_template('about.html')
 @app.route('/class-5')
 def class5():
     return render_template('class5.html')
@@ -629,10 +632,10 @@ def Poem1():
 @app.route('/class-5/English 2nd Language/Prose')
 def Prose1():
     return render_template('prose.html')
-@app.route('/class-5/Maths/Part I')
+@app.route('/class-5/Maths/PartI')
 def part1():
     return render_template('part1.html')
-@app.route('/class-5/Maths/Part II')
+@app.route('/class-5/Maths/PartII')
 def part2():
     return render_template('part2.html')
 
@@ -730,16 +733,16 @@ def buic8():
     return render_template('buic8.html')
 @app.route('/class-8/English 1st Language/Poem')
 def poem6():
-    return render_template('poem3.html')
+    return render_template('poem.html')
 @app.route('/class-8/English 1st Language/Prose')
 def prose6():
-    return render_template('prose3.html')
+    return render_template('prose.html')
 @app.route('/class-8/English 2nd Language/Poem')
 def poem7():
-    return render_template('poem3.html')
+    return render_template('poem.html')
 @app.route('/class-8/English 2nd Language/Prose')
 def prose7():
-    return render_template('prose3.html')
+    return render_template('prose.html')
 
 
 @app.route('/scrape', methods=['POST'])
