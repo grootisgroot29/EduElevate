@@ -590,9 +590,6 @@ def index():
 @app.route('/courses')
 def courses():
     return render_template('courses.html')
-@app.route('/about')
-def about():
-    return render_template('about.html')
 @app.route('/class-5')
 def class5():
     return render_template('class5.html')
@@ -632,6 +629,118 @@ def Poem1():
 @app.route('/class-5/English 2nd Language/Prose')
 def Prose1():
     return render_template('prose.html')
+@app.route('/class-5/Maths/Part I')
+def part1():
+    return render_template('part1.html')
+@app.route('/class-5/Maths/Part II')
+def part2():
+    return render_template('part2.html')
+
+@app.route('/class-6/English 1st Language')
+def englishc61():
+    return render_template('englishc61.html')
+@app.route('/class-6/English 2nd Language')
+def englishc62():
+    return render_template('englishc62.html')
+@app.route('/class-6/English 1st Language/Poem')
+def poem2():
+    return render_template('poem1.html')
+@app.route('/class-6/English 1st Language/Prose')
+def prose2():
+    return render_template('prose1.html')
+@app.route('/class-6/English 2nd Language/Prose')
+def poem3():
+    return render_template('poem1.html')
+@app.route('/class-6/English 2nd Language/Prose')
+def prose3():
+    return render_template('prose1.html')
+@app.route('/class-6/Maths')
+def mathsc6():
+    return render_template('mathsc6.html')
+@app.route('/class-6/Science')
+def sciencec6():
+    return render_template('sciencec6.html')
+@app.route('/class-6/Social Science')
+def socialc6():
+    return render_template('socialc6.html')
+@app.route('/class-6/Social Science/Part I')
+def part11():
+    return render_template('part11.html')
+@app.route('/class-6/Social Science/Part II')
+def part22():
+    return render_template('part22.html')
+
+@app.route('/class-7/English 1st Language')
+def englishc71():
+    return render_template('englishc71.html')
+@app.route('/class-7/English 2nd Language')
+def englishc72():
+    return render_template('englishc72.html')
+@app.route('/class-7/Maths')
+def mathc7():
+    return render_template('mathc7.html')
+@app.route('/class-7/Science')
+def sciencec7():
+    return render_template('sciencec7.html')
+@app.route('/class-7/Social Science')
+def socialc7():
+    return render_template('socialc7.html')
+@app.route('/class-7/English 1st Language/Poem')
+def poem4():
+    return render_template('poem2.html')
+@app.route('/class-7/English 1st Language/Prose')
+def prose4():
+    return render_template('prose2.html')
+@app.route('/class-7/English 1st Language/Poem')
+def poem5():
+    return render_template('poem2.html')
+@app.route('/class-7/English 1st Language/Prose')
+def prose5():
+    return render_template('prose2.html')
+
+@app.route('/class-8/English 1st Language')
+def englishc81():
+    return render_template('englishc81.html')
+@app.route('/class-8/English 2nd Language')
+def englishc82():
+    return render_template('englishc82.html')
+@app.route('/class-8/Maths')
+def mathc8():
+    return render_template('mathc8.html')
+@app.route('/class-8/Science')
+def sciencec8():
+    return render_template('sciencec8.html')
+@app.route('/class-8/History')
+def hisc8():
+    return render_template('hisc8.html')
+@app.route('/class-8/Political science')
+def polc8():
+    return render_template('polc8.html')
+@app.route('/class-8/Sociology')
+def sociologyc8():
+    return render_template('sociologyc8.html')
+@app.route('/class-8/Geography')
+def geoc8():
+    return render_template('geoc8.html')
+@app.route('/class-8/Economics')
+def ecoc8():
+    return render_template('ecoc8.html')
+@app.route('/class-8/Business studies')
+def buic8():
+    return render_template('buic8.html')
+@app.route('/class-8/English 1st Language/Poem')
+def poem6():
+    return render_template('poem3.html')
+@app.route('/class-8/English 1st Language/Prose')
+def prose6():
+    return render_template('prose3.html')
+@app.route('/class-8/English 2nd Language/Poem')
+def poem7():
+    return render_template('poem3.html')
+@app.route('/class-8/English 2nd Language/Prose')
+def prose7():
+    return render_template('prose3.html')
+
 
 @app.route('/scrape', methods=['POST'])
 def scrape():

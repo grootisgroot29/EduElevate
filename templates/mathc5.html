@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathematics - Class 5</title>
-    <link rel="stylesheet" href="subjects.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
 </head>
 <body>
     <header>
@@ -12,9 +12,9 @@
             <h1>Mathematics - Class 5</h1>
             <nav>
                 <ul>
-                    <li><a href="edu.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('courses') }}">Courses</a></li> <!-- Link to the new courses page -->
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
             </nav>
         </div>
