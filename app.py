@@ -591,7 +591,7 @@ def index():
 def courses():
     return render_template('courses.html')
 @app.route('/about')
-def courses():
+def about():
     return render_template('about.html')
 @app.route('/class-5')
 def class5():

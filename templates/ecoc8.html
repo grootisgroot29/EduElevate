@@ -101,7 +101,6 @@
 // Retrieve the class and subject from localStorage
 const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '5';
 const subject = localStorage.getItem('subject');
-const contentType = localStorage.getItem('content_type');
 const chapter = document.getElementById('chapterInput').value.trim();
 
 // Validate required inputs
@@ -121,9 +120,6 @@ console.log('Required fields:', requiredFields);
 
 // Build the data payload dynamically based on required fields
 const data = {};
-if (requiredFields.includes("content_type")) {
-    data.content_type = contentType;
-}
 if (requiredFields.includes("chapter")) {
     data.chapter = chapter;
 }

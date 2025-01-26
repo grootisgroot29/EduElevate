@@ -13,15 +13,16 @@
             <h1>Welcome to My Website</h1>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('englishc81') }}" class="btn-nav">English 1st Language</a></li>
-                    <li><a href="{{ url_for('englishc82') }}" class="btn-nav">English 2nd Language</a></li>
-                    <li><a href="{{ url_for('mathc8') }}" class="btn-nav">Maths</a></li>
-                    <li><a href="{{ url_for('sciencec8') }}" class="btn-nav">Science</a></li>
-                    <li><a href="{{ url_for('hisc8') }}" class="btn-nav">History</a></li>
-                    <li><a href="{{ url_for('polc8') }}" class="btn-nav">Political Science</a></li>
-                    <li><a href="{{ url_for('sociologyc8') }}" class="btn-nav">Sociology</a></li>
-                    <li><a href="{{ url_for('geoc8') }}" class="btn-nav">Geography</a></li>
-                    <li><a href="{{ url_for('ecoc8') }}" class="btn-nav">Economics</a></li>
+                    <li><a href="{{ url_for('englishc81') }}" class="btn-nav" onclick="storeButtonText(this)">English 1st Language</a></li>
+                    <li><a href="{{ url_for('englishc82') }}" class="btn-nav" onclick="storeButtonText(this)">English 2nd Language</a></li>
+                    <li><a href="{{ url_for('mathc8') }}" class="btn-nav" onclick="storeButtonText(this)">Maths</a></li>
+                    <li><a href="{{ url_for('sciencec8') }}" class="btn-nav" onclick="storeButtonText(this)">Science</a></li>
+                    <li><a href="{{ url_for('hisc8') }}" class="btn-nav" onclick="storeButtonText(this)">History</a></li>
+                    <li><a href="{{ url_for('polc8') }}" class="btn-nav" onclick="storeButtonText(this)">Political Science</a></li>
+                    <li><a href="{{ url_for('sociologyc8') }}" class="btn-nav" onclick="storeButtonText(this)">Sociology</a></li>
+                    <li><a href="{{ url_for('geoc8') }}" class="btn-nav" onclick="storeButtonText(this)">Geography</a></li>
+                    <li><a href="{{ url_for('ecoc8') }}" class="btn-nav" onclick="storeButtonText(this)">Economics</a></li>
+                    <li><a href="{{ url_for('buic8') }}" class="btn-nav" onclick="storeButtonText(this)">Business Studies</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,9 +44,9 @@
     <script>
         // Function to handle button click
         function storeButtonText(button) {
-            const buttonText = button.textContent; // Get the text of the clicked button
-            localStorage.setItem("selectedSubject", buttonText); // Store it in localStorage
-            console.log(`Stored subject: ${buttonText}`); // Optional: Log for debugging
+            const buttonText = button.textContent;
+            localStorage.setItem("subject", buttonText);
+            console.log(`Stored subject: ${buttonText}`);
         }
     </script>
 </body>
