@@ -628,10 +628,10 @@ def Prose():
     return render_template('prose.html')
 @app.route('/class-5/English 2nd Language/Poem')
 def Poem1():
-    return render_template('poem.html')
+    return render_template('poem21.html')
 @app.route('/class-5/English 2nd Language/Prose')
 def Prose1():
-    return render_template('prose.html')
+    return render_template('prose21.html')
 @app.route('/class-5/Maths/PartI')
 def part1():
     return render_template('part1.html')
