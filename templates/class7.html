@@ -13,18 +13,18 @@
             <h1>Welcome to My Website</h1>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('englishc71') }}" class="btn-nav">English 1st Language</a></li>
-                    <li><a href="{{ url_for('englishc72') }}" class="btn-nav">English 2nd Language</a></li>
-                    <li><a href="{{ url_for('mathc7') }}" class="btn-nav">Maths</a></li>
-                    <li><a href="{{ url_for('sciencec7') }}" class="btn-nav">Science</a></li>
-                    <li><a href="{{ url_for('socialc7') }}" class="btn-nav">Social Science</a></li>
+                    <li><a href="{{ url_for('englishc71') }}" class="btn-nav" onclick="storeButtonText(this)">English 1st Language</a></li>
+                    <li><a href="{{ url_for('englishc72') }}" class="btn-nav" onclick="storeButtonText(this)">English 2nd Language</a></li>
+                    <li><a href="{{ url_for('mathc7') }}" class="btn-nav" onclick="storeButtonText(this)">Maths</a></li>
+                    <li><a href="{{ url_for('sciencec7') }}" class="btn-nav" onclick="storeButtonText(this)">Science</a></li>
+                    <li><a href="{{ url_for('socialc7') }}" class="btn-nav" onclick="storeButtonText(this)">Social Science</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Welcome Section -->
-    <section id="welcome" class="container">
+      <!-- Welcome Section -->
+      <section id="welcome" class="container">
         <h2>Hello, Everyone!</h2>
         <p>Explore various subjects by clicking the buttons above.</p>
         <a href="{{ url_for('about') }}" class="btn">Learn More</a>
@@ -36,12 +36,13 @@
             <p>&copy; 2024 My Website. All rights reserved.</p>
         </div>
     </footer>
+    <!--javascript functionality-->
     <script>
         // Function to handle button click
         function storeButtonText(button) {
-            const buttonText = button.textContent; // Get the text of the clicked button
-            localStorage.setItem("selectedSubject", buttonText); // Store it in localStorage
-            console.log(`Stored subject: ${buttonText}`); // Optional: Log for debugging
+            const subject= button.textContent; // Get the text of the clicked button
+            localStorage.setItem("subject", subject); // Store it in localStorage
+            console.log(`Stored subject: ${subject}`); // Optional: Log for debugging
         }
     </script>
 </body>
