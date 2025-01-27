@@ -733,10 +733,10 @@ def buic8():
     return render_template('buic8.html')
 @app.route('/class-8/English 1st Language/Poem')
 def poem6():
-    return render_template('poem.html')
+    return render_template('poem31.html')
 @app.route('/class-8/English 1st Language/Prose')
 def prose6():
-    return render_template('prose.html')
+    return render_template('prose31.html')
 @app.route('/class-8/English 2nd Language/Poem')
 def poem7():
     return render_template('poem.html')
