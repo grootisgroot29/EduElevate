@@ -13,18 +13,18 @@
             <h1>Welcome to My Website</h1>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('englishc61') }}" class="btn-nav">English 1st Language</a></li>
-                    <li><a href="{{ url_for('englishc62') }}" class="btn-nav">English 2nd Language</a></li>
-                    <li><a href="{{ url_for('mathsc6') }}" class="btn-nav">Maths</a></li>
-                    <li><a href="{{ url_for('sciencec6') }}" class="btn-nav">Science</a></li>
-                    <li><a href="{{ url_for('socialc6') }}" class="btn-nav">Social Science</a></li>
+                    <li><a href="{{ url_for('englishc61') }}" class="btn-nav" onclick="storeButtonText(this)">English 1st Language</a></li>
+                    <li><a href="{{ url_for('englishc62') }}" class="btn-nav" onclick="storeButtonText(this)">English 2nd Language</a></li>
+                    <li><a href="{{ url_for('mathsc6') }}" class="btn-nav" onclick="storeButtonText(this)">Maths</a></li>
+                    <li><a href="{{ url_for('sciencec6') }}" class="btn-nav" onclick="storeButtonText(this)">Science</a></li>
+                    <li><a href="{{ url_for('socialc6') }}" class="btn-nav" onclick="storeButtonText(this)">Social Science</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Welcome Section -->
-    <section id="welcome" class="container">
+      <!-- Welcome Section -->
+      <section id="welcome" class="container">
         <h2>Hello, Everyone!</h2>
         <p>Explore various subjects by clicking the buttons above.</p>
         <a href="{{ url_for('about') }}" class="btn">Learn More</a>
@@ -47,4 +47,3 @@
     </script>
 </body>
 </html>
-
