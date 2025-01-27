@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/S.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
     <!-- Header Section -->
@@ -36,13 +36,15 @@
             <p>&copy; 2024 My Website. All rights reserved.</p>
         </div>
     </footer>
+    <!--javascript functionality-->
     <script>
         // Function to handle button click
         function storeButtonText(button) {
-            const buttonText = button.textContent; // Get the text of the clicked button
-            localStorage.setItem("selectedSubject", buttonText); // Store it in localStorage
-            console.log(`Stored subject: ${buttonText}`); // Optional: Log for debugging
+            const subject= button.textContent; // Get the text of the clicked button
+            localStorage.setItem("subject", subject); // Store it in localStorage
+            console.log(`Stored subject: ${subject}`); // Optional: Log for debugging
         }
     </script>
 </body>
 </html>
+

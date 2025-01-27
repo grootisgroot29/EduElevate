@@ -647,10 +647,10 @@ def englishc62():
     return render_template('englishc62.html')
 @app.route('/class-6/English 1st Language/Poem')
 def poem2():
-    return render_template('poem1.html')
+    return render_template('poem2.html')
 @app.route('/class-6/English 1st Language/Prose')
 def prose2():
-    return render_template('prose1.html')
+    return render_template('prose2.html')
 @app.route('/class-6/English 2nd Language/Prose')
 def poem3():
     return render_template('poem1.html')
