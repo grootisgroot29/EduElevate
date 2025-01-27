@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Science - Class 6</title>
+    <title>English 2nd Language - Class 7</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Social Science I- Class 6</h1>
+            <h1>English 2nd Language Poem- Class 7</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -19,6 +19,8 @@
             </nav>
         </div>
     </header>
+
+    
     <section id="chapters">
         <div class="form-container">
             <h2>Enter the Chapter</h2>
@@ -28,11 +30,6 @@
             </form>
         </div>
     </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
-        </div>
-    </footer>
     <!-- Modal for displaying scraped content -->
     <div id="scrapedContentModal" class="modal">
         <div class="modal-content">
@@ -98,9 +95,8 @@
     // Retrieve the class and subject from localStorage
     const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '5';
     const subject = localStorage.getItem('subject');
-    const part = localStorage.getItem('selectedPart');  // Ensure part is fetched from localStorage
+    const contentType = localStorage.getItem('content_type');
     const chapter = document.getElementById('chapterInput').value.trim();
-    
 
     // Validate required inputs
     if (!class_number || !subject) {
@@ -119,8 +115,8 @@
 
     // Build the data payload dynamically based on required fields
     const data = {};
-    if (requiredFields.includes("part")) {
-        data.part = part;
+    if (requiredFields.includes("content_type")) {
+        data.content_type = contentType;
     }
     if (requiredFields.includes("chapter")) {
         data.chapter = chapter;
@@ -257,5 +253,6 @@
             100% { transform: rotate(360deg); }
         }
     </style>
+
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Science - Class 6</title>
-    <link rel="stylesheet" href="subjects.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
 </head>
 <body>
     <header>
@@ -12,9 +12,9 @@
             <h1>Social Science - Class 6</h1>
             <nav>
                 <ul>
-                    <li><a href="edu.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('courses') }}">Courses</a></li> <!-- Link to the new courses page -->
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,12 +25,12 @@
             <h2>Part</h2>
             <ul>
                 <li>
-                    <a href="part1.html" class="btn-nav" onclick="storePart('I')">
+                    <a href="{{ url_for('part11') }}" class="btn-nav" onclick="storePart('I')">
                         <button type="button">I</button>
                     </a>
                 </li>
                 <li>
-                    <a href="part2.html" class="btn-nav" onclick="storePart('II')">
+                    <a href="{{ url_for('part22') }}" class="btn-nav" onclick="storePart('II')">
                         <button type="button">II</button>
                     </a>
                 </li>
@@ -44,13 +44,26 @@
         </div>
     </footer>
     <script>
-        // JavaScript function to store the selected part in localStorage
-        function storePart(part) {
-            // Store the selected part in localStorage
-            localStorage.setItem('selectedPart', part);
-            console.log('Stored selected part:', part); // For debugging purposes
-        }
+       document.addEventListener('DOMContentLoaded', function() {
+    // Extract part from URL (e.g., /class-5/Maths/PartI -> I)
+    const pathParts = window.location.pathname.split('/');
+    const partFromUrl = pathParts[pathParts.length - 1].replace('Part', '');
+    if (partFromUrl) {
+        localStorage.setItem('selectedPart', partFromUrl);
+        console.log('Part set from URL:', partFromUrl);
+    }
+});
+
+// Updated storePart function
+function storePart(part) {
+    // Store the selected part in localStorage
+    localStorage.setItem('selectedPart', part);
+    console.log('Stored selected part:', part);
+    
+    // Verify storage immediately
+    const storedPart = localStorage.getItem('selectedPart');
+    console.log('Verified stored part:', storedPart);
+}
     </script>
 </body>
 </html>
-

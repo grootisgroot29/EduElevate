@@ -690,16 +690,16 @@ def socialc7():
     return render_template('socialc7.html')
 @app.route('/class-7/English 1st Language/Poem')
 def poem4():
-    return render_template('poem2.html')
+    return render_template('poem1.html')
 @app.route('/class-7/English 1st Language/Prose')
 def prose4():
     return render_template('prose2.html')
-@app.route('/class-7/English 1st Language/Poem')
+@app.route('/class-7/English 2nd Language/Poem')
 def poem5():
-    return render_template('poem2.html')
-@app.route('/class-7/English 1st Language/Prose')
+    return render_template('poem23.html')
+@app.route('/class-7/English 2nd Language/Prose')
 def prose5():
-    return render_template('prose2.html')
+    return render_template('prose23.html')
 
 @app.route('/class-8/English 1st Language')
 def englishc81():
