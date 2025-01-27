@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geography - Class 8</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/S.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
 </head>
 <body>
     <header>
@@ -12,7 +12,7 @@
             <h1>Geography - Class 8</h1>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
                     <li><a href="{{ url_for('courses') }}">Courses</a></li> <!-- Link to the new courses page -->
                     <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
@@ -29,11 +29,22 @@
                 <button type="submit">Submit</button>
             </form>
         </div>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+    </section>
+    <!-- Modal for displaying scraped content -->
+    <div id="scrapedContentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Scraped Content</h2>
+            <pre id="scrapedContent"></pre> <!-- Display the scraped content here -->
         </div>
-    </footer>
+    </div>
+    <!-- Loading Indicator Modal -->
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+            <h2>Scraping in Progress...</h2>
+            <div class="loader"></div> <!-- A spinning loader -->
+        </div>
+    </div>
 </section>
 <!-- Modal for displaying scraped content -->
 <div id="scrapedContentModal" class="modal">
@@ -98,7 +109,7 @@
 
     function scrape() {
 // Retrieve the class and subject from localStorage
-const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '5';
+const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || localStorage.getItem('selected_class');
 const subject = localStorage.getItem('subject');
 const chapter = document.getElementById('chapterInput').value.trim();
 
