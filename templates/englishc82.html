@@ -26,58 +26,23 @@
             <h2>CONTENT TYPE</h2>
             <ul>
                 <li>
-                    <a href="{{ url_for('Poem') }}ml" class="btn-nav" onclick="storeContentType('Poem')">
+                    <a href="{{ url_for('poem7') }}" class="btn-nav" onclick="storeContentType('Poem')">
                         <button type="button">Poem</button>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('Prose') }}" class="btn-nav" onclick="storeContentType('Prose')">
+                    <a href="{{ url_for('prose7') }}" class="btn-nav" onclick="storeContentType('Prose')">
                         <button type="button">Prose</button>
                     </a>
                 </li>
             </ul>
         </div>
     </section>
-    <style>
-        .button-container {
-            text-align: center;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            display: inline;
-            margin: 10px;
-        }
-        .btn-nav button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 40px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 4px;
-            width: 200px;
-        }
-        .btn-nav button:hover {
-            background-color: #45a049;
-        }
-    </style>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
-        </div>
-    </footer>
     <script>
         // Function to store the content type in localStorage
-        function storeContentType(contentType) {
-            localStorage.setItem('contentType', contentType);
-            console.log('Stored content type:', contentType); // For debugging purposes
+        function storeContentType(content_type) {
+            localStorage.setItem('content_type', content_type);
+            console.log('Stored content type:', content_type); // For debugging purposes
         }
     </script>
 </body>

@@ -739,10 +739,10 @@ def prose6():
     return render_template('prose31.html')
 @app.route('/class-8/English 2nd Language/Poem')
 def poem7():
-    return render_template('poem.html')
+    return render_template('poem32.html')
 @app.route('/class-8/English 2nd Language/Prose')
 def prose7():
-    return render_template('prose.html')
+    return render_template('prose32.html')
 
 
 @app.route('/scrape', methods=['POST'])
