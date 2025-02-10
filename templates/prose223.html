@@ -98,7 +98,41 @@
         button:hover {
             background-color: #2980b9;
         }
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
         /* Footer Styles */
         footer {
             background-color: #2c3e50;
@@ -133,13 +167,26 @@
     <section id="chapters">
         <div class="form-container">
             <h2>Enter the Chapter</h2>
-            <form id="scrapeForm">
+            <form id="scrapeForm" method="POST">
                 <input type="text" id="chapterInput" name="chapter" placeholder="Enter Chapter Number" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
     </section>
-
+    <div id="scrapedContentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Chapter Content</h2>
+            <div id="scrapedContent" class="scraped-content"></div>
+        </div>
+    </div>
+    
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+            <h2>Loading Content...</h2>
+            <div class="loader"></div>
+        </div>
+    </div>
     <footer>
         <div class="container">
             <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
@@ -282,8 +329,55 @@ function displayContent(data) {
 }
 
 document.getElementById('scrapeForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    scrape();
+    event.preventDefault(); // Prevent the default form submission
+
+    const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '8';
+    const subject = localStorage.getItem('subject');
+    const content_type = localStorage.getItem('content_type');
+    const chapter = document.getElementById('chapterInput').value.trim();
+
+    if (!class_number || !subject) {
+        alert('Class and Subject are required. Please go back and fill them in.');
+        return;
+    }
+
+    if (!chapter) {
+        alert('Chapter is required!');
+        return;
+    }
+
+    const data = {
+        class: class_number,
+        subject: subject,
+        content_type: content_type,
+        chapter: chapter
+    };
+
+    console.log('Sending request with data:', data);
+    showLoadingModal();
+
+    fetch('/class-8/English 2nd Language/Prose', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Scraped content:', data);
+        displayContent(data);
+    })
+    .catch(error => {
+        console.error('Scraping failed:', error);
+        alert('An error occurred during scraping. Check the console for details.');
+        hideLoadingModal();
+    });
 });
 
 document.getElementById('closeModal').addEventListener('click', function() {

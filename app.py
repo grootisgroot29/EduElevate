@@ -943,29 +943,53 @@ BASE_URL = "https://kseebsolutions.guru/kseeb-solutions-class-8-english-chapter-
 @app.route('/class-8/English 2nd Language/Prose', methods=['GET', 'POST'])
 def prose223():
     if request.method == 'POST':
-        chapter = request.form.get('chapter')
-        if chapter:
-            # Construct the full URL
-            url = f"{BASE_URL}{chapter}/"
-            
-            # Fetch the content from the external URL
-            response = requests.get(url)
-            if response.status_code == 200:
-                # Parse the HTML content
-                soup = BeautifulSoup(response.content, 'html.parser')
-                
-                # Extract the relevant content (e.g., the main article)
-                content = soup.find('div', class_='entry-content')  # Adjust the selector as needed
-                if content:
-                    return render_template('prose223.html', content=content.prettify())
-                else:
-                    return render_template('prose223.html', error="Content not found on the external site.")
-            else:
-                return render_template('prose223.html', error="Failed to fetch content from the external site.")
+        # Check if the request is JSON
+        if request.is_json:
+            data = request.get_json()
+            chapter = data.get('chapter')
         else:
-            return render_template('prose223.html', error="Chapter number is required.")
-    return render_template('prose223.html')
+            chapter = request.form.get('chapter')
+        
+        if not chapter:
+            return jsonify({"error": "Chapter number is required."}), 400
 
+        # Construct the full URL
+        url = f"{BASE_URL}{chapter}/"
+        
+        # Fetch the content from the external URL
+        response = requests.get(url)
+        if response.status_code != 200:
+            return jsonify({"error": "Failed to fetch content from the external site."}), 500
+
+        # Parse the HTML content
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Extract the relevant content (e.g., the main article)
+        content = soup.find('div', class_='entry-content')  # Adjust the selector as needed
+        if not content:
+            return jsonify({"error": "Content not found on the external site."}), 404
+
+        # Format the content for display
+        scraped_data = []
+        for element in content.find_all(['p', 'img', 'table', 'ul', 'ol']):
+            if element.name == 'p':
+                scraped_data.append({"type": "text", "data": element.get_text(strip=True)})
+            elif element.name == 'img':
+                scraped_data.append({"type": "image", "data": element['src']})
+            elif element.name == 'table':
+                headers = [th.get_text(strip=True) for th in element.find_all('th')]
+                rows = []
+                for row in element.find_all('tr'):
+                    cells = [td.get_text(strip=True) for td in row.find_all('td')]
+                    if cells:
+                        rows.append(cells)
+                scraped_data.append({"type": "table", "data": {"header": headers, "rows": rows}})
+            elif element.name in ['ul', 'ol']:
+                items = [li.get_text(strip=True) for li in element.find_all('li')]
+                scraped_data.append({"type": "list", "data": items})
+
+        return jsonify(scraped_data)
+    return render_template('prose223.html')
 
 # @app.route('/scrape', methods=['POST'])
 # def scrape():
