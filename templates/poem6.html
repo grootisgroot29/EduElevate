@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maths - Class 7</title>
+    <title>Poem - Class 8</title>
     <style>
         /* General Styles */
         body {
@@ -289,7 +289,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Maths - Class 7</h1>
+            <h1>Poem - Class 8</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -302,10 +302,9 @@
 
     <section id="chapters">
         <div class="form-container">
-            <h2>Enter the Chapter and Exercise Number</h2>
+            <h2>Enter the Chapter</h2>
             <form id="scrapeForm">
                 <input type="text" id="chapterInput" name="chapter" placeholder="Enter Chapter Number" required>
-                <input type="text" id="exerciseInput" name="exercise" placeholder="Enter Exercise Number" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -333,6 +332,12 @@
     </footer>
 
     <script>
+        // Store current content type information
+        document.addEventListener('DOMContentLoaded', function() {
+            localStorage.setItem('content_type', 'poem');
+            console.log('Content type set as:', localStorage.getItem('content_type'));
+        });
+
         const classSubjects = {
             "5": { 
                 "English 2nd Language": ["content_type", "chapter"],
@@ -396,25 +401,21 @@
                 if (item.type === "text") {
                     const text = item.data.trim();
                     
-                    // Split question and answer if they're on the same line
                     if (text.includes("Answer:") && text.includes("Question")) {
                         const [question, answer] = text.split("Answer:");
                         
-                        // Create question div
                         const questionDiv = document.createElement('div');
                         questionDiv.className = 'question';
                         questionDiv.innerHTML = question.trim();
                         questionDiv.style.marginBottom = '10px';
                         contentDiv.appendChild(questionDiv);
                         
-                        // Create answer div
                         const answerDiv = document.createElement('div');
                         answerDiv.className = 'answer';
                         answerDiv.innerHTML = `Answer: ${answer.trim()}`;
                         answerDiv.style.marginBottom = '20px';
                         contentDiv.appendChild(answerDiv);
                     }
-                    // Handle standalone questions
                     else if (text.startsWith('Question')) {
                         const questionDiv = document.createElement('div');
                         questionDiv.className = 'question';
@@ -422,7 +423,6 @@
                         questionDiv.style.marginBottom = '10px';
                         contentDiv.appendChild(questionDiv);
                     }
-                    // Handle standalone answers
                     else if (text.startsWith('Answer')) {
                         const answerDiv = document.createElement('div');
                         answerDiv.className = 'answer';
@@ -430,7 +430,6 @@
                         answerDiv.style.marginBottom = '20px';
                         contentDiv.appendChild(answerDiv);
                     }
-                    // Handle other text content
                     else {
                         const textDiv = document.createElement('div');
                         textDiv.className = 'content-text';
@@ -462,7 +461,6 @@
                     const table = document.createElement('table');
                     table.className = 'content-table';
                     
-                    // Add header if exists
                     if (item.data.header && item.data.header.length > 0) {
                         const thead = document.createElement('thead');
                         const headerRow = document.createElement('tr');
@@ -475,7 +473,6 @@
                         table.appendChild(thead);
                     }
                     
-                    // Add body
                     const tbody = document.createElement('tbody');
                     item.data.rows.forEach(row => {
                         const tr = document.createElement('tr');
@@ -487,7 +484,6 @@
                         tbody.appendChild(tr);
                     });
                     table.appendChild(tbody);
-                    
                     tableContainer.appendChild(table);
                     contentDiv.appendChild(tableContainer);
                 }
@@ -497,9 +493,10 @@
                     listContainer.style.margin = '15px 0';
                     
                     const list = document.createElement('ul');
-                    list.className = 'content-list';
+                    list.className = 'answer-list';
                     item.data.forEach(listItem => {
                         const li = document.createElement('li');
+                        li.className = 'answer-list-item';
                         li.textContent = listItem;
                         list.appendChild(li);
                     });
@@ -511,18 +508,18 @@
         }
 
         function scrape() {
-            const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '7';
+            const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '8';
             const subject = localStorage.getItem('subject');
+            const content_type = localStorage.getItem('content_type');
             const chapter = document.getElementById('chapterInput').value.trim();
-            const exercise = document.getElementById('exerciseInput').value.trim();
 
             if (!class_number || !subject) {
                 alert('Class and Subject are required. Please go back and fill them in.');
                 return;
             }
 
-            if (!chapter || !exercise) {
-                alert('Chapter and Exercise are required!');
+            if (!chapter) {
+                alert('Chapter is required!');
                 return;
             }
 
@@ -532,8 +529,8 @@
             const data = {
                 class: class_number,
                 subject: subject,
-                chapter: chapter,
-                exercise: exercise
+                content_type: content_type,
+                chapter: chapter
             };
 
             console.log('Sending request with data:', data);
@@ -563,7 +560,6 @@
             });
         }
 
-        // Event Listeners
         document.getElementById('scrapeForm').addEventListener('submit', function(event) {
             event.preventDefault();
             scrape();

@@ -26,18 +26,23 @@
             <h2>CONTENT TYPE</h2>
             <ul>
                 <li>
-                    <a href="{{ url_for('poem4') }}" class="btn-nav" onclick="storeContentType('Poem')">
+                    <a href="{{ url_for('poem22') }}" class="btn-nav" onclick="storeContentType('Poem')">
                         <button type="button">Poem</button>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url_for('prose4') }}" class="btn-nav" onclick="storeContentType('Prose')">
+                    <a href="{{ url_for('prose22') }}" class="btn-nav" onclick="storeContentType('Prose')">
                         <button type="button">Prose</button>
                     </a>
                 </li>
             </ul>
         </div>
     </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+        </div>
+    </footer>
     <script>
         // Function to store the content type in localStorage
         function storeContentType(content_type) {

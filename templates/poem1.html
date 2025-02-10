@@ -3,24 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English 1st Language - Class 7</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/subjects.css') }}">
+    <title>English 2bd Language Poem - Class 5</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form Container */
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 20px;
+            background-color: #f5f6fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        #scrapeForm {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-height: 70vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        /* Scraped Content Styles */
+        .scraped-content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .scraped-content p {
+            margin: 10px 0;
+        }
+
+        /* Question and Answer Styles */
+        .question {
+            font-weight: bold;
+            margin-top: 20px;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+
+        .answer {
+            margin: 10px 0 20px 20px;
+            color: #34495e;
+            background-color: #fff;
+            padding: 10px;
+            border-left: 4px solid #2ecc71;
+            border-radius: 4px;
+        }
+
+        /* Numbered List Styles */
+        .numbered-list {
+            counter-reset: item;
+            margin: 10px 0 20px 20px;
+            padding-left: 0;
+        }
+
+        .numbered-item {
+            counter-increment: item;
+            margin: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .numbered-item::before {
+            content: counter(item) ".";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* Bullet Point List Styles */
+        .answer-list {
+            margin: 10px 0 20px 40px;
+            padding-left: 0;
+        }
+
+        .answer-list-item {
+            margin: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-weight: bold;
+        }
+
+        .answer-list-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2c3e50;
+        }
+
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .content-table th,
+        .content-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .content-table th {
+            background-color: #f8f9fa;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        /* Image Styles */
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Loader Styles */
+        .loader {
+            border: 12px solid #f3f3f3;
+            border-top: 12px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>English 1st Language Poem- Class 7</h1>
+            <h1>English 2nd Language Poem - Class 5</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('courses') }}">Courses</a></li> <!-- Link to the new courses page -->
+                    <li><a href="{{ url_for('courses') }}">Courses</a></li>
                     <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    
     <section id="chapters">
         <div class="form-container">
             <h2>Enter the Chapter</h2>
@@ -30,27 +309,35 @@
             </form>
         </div>
     </section>
-    <!-- Modal for displaying scraped content -->
+
     <div id="scrapedContentModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
-            <h2>Scraped Content</h2>
-            <pre id="scrapedContent"></pre> <!-- Display the scraped content here -->
+            <h2>Chapter Content</h2>
+            <div id="scrapedContent" class="scraped-content"></div>
         </div>
     </div>
-    <!-- Loading Indicator Modal -->
+
     <div id="loadingModal" class="modal">
         <div class="modal-content">
-            <h2>Scraping in Progress...</h2>
-            <div class="loader"></div> <!-- A spinning loader -->
+            <h2>Loading Content...</h2>
+            <div class="loader"></div>
         </div>
     </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script>
+        // Store current content type information
+        document.addEventListener('DOMContentLoaded', function() {
+            localStorage.setItem('content_type', 'poem');
+            console.log('Content type set as:', localStorage.getItem('content_type'));
+        });
+
         const classSubjects = {
             "5": { 
                 "English 2nd Language": ["content_type", "chapter"],
@@ -85,174 +372,209 @@
                 "Business studies": ["chapter"]
             }
         };
-    
-        // Get required fields based on class and subject
+
         function getRequiredFields(classNumber, subject) {
             return classSubjects[classNumber]?.[subject] || [];
         }
-    
-        function scrape() {
-    // Retrieve the class and subject from localStorage
-    const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '5';
-    const subject = localStorage.getItem('subject');
-    const contentType = localStorage.getItem('content_type');
-    const chapter = document.getElementById('chapterInput').value.trim();
 
-    // Validate required inputs
-    if (!class_number || !subject) {
-        alert('Class and Subject are required. Please go back and fill them in.');
-        return;
-    }
-
-    if (!chapter) {
-        alert('Chapter is required!');
-        return;
-    }
-
-    // Determine required fields for the selected class and subject
-    const requiredFields = getRequiredFields(class_number, subject);
-    console.log('Required fields:', requiredFields);
-
-    // Build the data payload dynamically based on required fields
-    const data = {};
-    if (requiredFields.includes("content_type")) {
-        data.content_type = contentType;
-    }
-    if (requiredFields.includes("chapter")) {
-        data.chapter = chapter;
-    }
-    data.class = class_number;
-    data.subject = subject;
-
-    console.log('Sending request with data:', data);
-
-    // Show the loading modal
-    showLoadingModal();
-
-    // Call the Flask API endpoint
-    fetch('/scrape', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error ${response.status}: ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(content => {
-        console.log('Scraped content:', content);
-        displayModal(content);
-        hideLoadingModal();
-    })
-    .catch(error => {
-        console.error('Scraping failed:', error);
-        alert('An error occurred during scraping. Check the console for details.');
-        hideLoadingModal();
-    });
-}
-
-    
-        // Show the loading modal
         function showLoadingModal() {
-            const loadingModal = document.getElementById('loadingModal');
-            loadingModal.style.display = 'block'; // Show the loading modal
+            document.getElementById('loadingModal').style.display = 'block';
         }
-    
-        // Hide the loading modal
+
         function hideLoadingModal() {
-            const loadingModal = document.getElementById('loadingModal');
-            loadingModal.style.display = 'none'; // Hide the loading modal
+            document.getElementById('loadingModal').style.display = 'none';
         }
-    
-        // Display the modal with the scraped content
-        function displayModal(content) {
-            const modal = document.getElementById('scrapedContentModal');
-            const scrapedContentElement = document.getElementById('scrapedContent');
-            scrapedContentElement.textContent = JSON.stringify(content, null, 2); // Format content as JSON
-    
-            modal.style.display = 'block'; // Show the modal
+
+        function displayContent(data) {
+            hideLoadingModal();
+            document.getElementById('scrapedContentModal').style.display = 'block';
+            
+            const contentDiv = document.getElementById('scrapedContent');
+            contentDiv.innerHTML = '';
+
+            if (data.error) {
+                contentDiv.innerHTML = `<p class="error">Error: ${data.error}</p>`;
+                return;
+            }
+
+            data.forEach((item) => {
+                if (item.type === "text") {
+                    const text = item.data.trim();
+                    
+                    if (text.includes("Answer:") && text.includes("Question")) {
+                        const [question, answer] = text.split("Answer:");
+                        
+                        const questionDiv = document.createElement('div');
+                        questionDiv.className = 'question';
+                        questionDiv.innerHTML = question.trim();
+                        questionDiv.style.marginBottom = '10px';
+                        contentDiv.appendChild(questionDiv);
+                        
+                        const answerDiv = document.createElement('div');
+                        answerDiv.className = 'answer';
+                        answerDiv.innerHTML = `Answer: ${answer.trim()}`;
+                        answerDiv.style.marginBottom = '20px';
+                        contentDiv.appendChild(answerDiv);
+                    }
+                    else if (text.startsWith('Question')) {
+                        const questionDiv = document.createElement('div');
+                        questionDiv.className = 'question';
+                        questionDiv.innerHTML = text;
+                        questionDiv.style.marginBottom = '10px';
+                        contentDiv.appendChild(questionDiv);
+                    }
+                    else if (text.startsWith('Answer')) {
+                        const answerDiv = document.createElement('div');
+                        answerDiv.className = 'answer';
+                        answerDiv.innerHTML = text;
+                        answerDiv.style.marginBottom = '20px';
+                        contentDiv.appendChild(answerDiv);
+                    }
+                    else {
+                        const textDiv = document.createElement('div');
+                        textDiv.className = 'content-text';
+                        textDiv.innerHTML = text;
+                        textDiv.style.marginBottom = '15px';
+                        contentDiv.appendChild(textDiv);
+                    }
+                }
+                else if (item.type === "image") {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'content-image';
+                    
+                    const img = document.createElement('img');
+                    img.src = item.data;
+                    img.alt = "Content Image";
+                    img.style.maxWidth = '100%';
+                    img.style.height = 'auto';
+                    img.style.margin = '15px 0';
+                    
+                    imgContainer.appendChild(img);
+                    contentDiv.appendChild(imgContainer);
+                }
+                else if (item.type === "table") {
+                    const tableContainer = document.createElement('div');
+                    tableContainer.className = 'table-container';
+                    tableContainer.style.margin = '15px 0';
+                    tableContainer.style.overflowX = 'auto';
+                    
+                    const table = document.createElement('table');
+                    table.className = 'content-table';
+                    
+                    if (item.data.header && item.data.header.length > 0) {
+                        const thead = document.createElement('thead');
+                        const headerRow = document.createElement('tr');
+                        item.data.header.forEach(cell => {
+                            const th = document.createElement('th');
+                            th.innerHTML = cell;
+                            headerRow.appendChild(th);
+                        });
+                        thead.appendChild(headerRow);
+                        table.appendChild(thead);
+                    }
+                    
+                    const tbody = document.createElement('tbody');
+                    item.data.rows.forEach(row => {
+                        const tr = document.createElement('tr');
+                        row.forEach(cell => {
+                            const td = document.createElement('td');
+                            td.innerHTML = cell;
+                            tr.appendChild(td);
+                        });
+                        tbody.appendChild(tr);
+                    });
+                    table.appendChild(tbody);
+                    tableContainer.appendChild(table);
+                    contentDiv.appendChild(tableContainer);
+                }
+                else if (item.type === "list") {
+                    const listContainer = document.createElement('div');
+                    listContainer.className = 'list-container';
+                    listContainer.style.margin = '15px 0';
+                    
+                    const list = document.createElement('ul');
+                    list.className = 'answer-list';
+                    item.data.forEach(listItem => {
+                        const li = document.createElement('li');
+                        li.className = 'answer-list-item';
+                        li.textContent = listItem;
+                        list.appendChild(li);
+                    });
+                    
+                    listContainer.appendChild(list);
+                    contentDiv.appendChild(listContainer);
+                }
+            });
         }
-    
-        // Close the modal
-        document.getElementById('closeModal').addEventListener('click', function() {
-            const modal = document.getElementById('scrapedContentModal');
-            modal.style.display = 'none'; // Hide the modal
-        });
-    
-        // Add event listener to the form submission
+
+        function scrape() {
+            const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '5';
+            const subject = localStorage.getItem('subject');
+            const content_type = localStorage.getItem('content_type');
+            const chapter = document.getElementById('chapterInput').value.trim();
+
+            if (!class_number || !subject) {
+                alert('Class and Subject are required. Please go back and fill them in.');
+                return;
+            }
+
+            if (!chapter) {
+                alert('Chapter is required!');
+                return;
+            }
+
+            const requiredFields = getRequiredFields(class_number, subject);
+            console.log('Required fields:', requiredFields);
+
+            const data = {
+                class: class_number,
+                subject: subject,
+                content_type: content_type,
+                chapter: chapter
+            };
+
+            console.log('Sending request with data:', data);
+            showLoadingModal();
+
+            fetch('/scrape', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Scraped content:', data);
+                displayContent(data);
+            })
+            .catch(error => {
+                console.error('Scraping failed:', error);
+                alert('An error occurred during scraping. Check the console for details.');
+                hideLoadingModal();
+            });
+        }
+
         document.getElementById('scrapeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            scrape(); // Trigger the scraping function
+            event.preventDefault();
+            scrape();
+        });
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('scrapedContentModal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('scrapedContentModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
         });
     </script>
-    
-     <!-- Modal styling -->
-     <style>
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scrolling if needed */
-            background-color: rgb(0, 0, 0); /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be adjusted */
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        pre {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-
-        /* Loading modal styling */
-        .loader {
-            border: 12px solid #f3f3f3; /* Light grey */
-            border-top: 12px solid #3498db; /* Blue */
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 2s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-
 </body>
 </html>

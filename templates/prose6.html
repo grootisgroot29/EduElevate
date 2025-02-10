@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maths - Class 7</title>
+    <title>Prose - Class 8</title>
     <style>
         /* General Styles */
         body {
@@ -166,49 +166,6 @@
             border-radius: 4px;
         }
 
-        /* Numbered List Styles */
-        .numbered-list {
-            counter-reset: item;
-            margin: 10px 0 20px 20px;
-            padding-left: 0;
-        }
-
-        .numbered-item {
-            counter-increment: item;
-            margin: 10px 0;
-            padding-left: 30px;
-            position: relative;
-            font-weight: bold;
-        }
-
-        .numbered-item::before {
-            content: counter(item) ".";
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        /* Bullet Point List Styles */
-        .answer-list {
-            margin: 10px 0 20px 40px;
-            padding-left: 0;
-        }
-
-        .answer-list-item {
-            margin: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            font-weight: bold;
-        }
-
-        .answer-list-item::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #2c3e50;
-        }
-
         /* Table Styles */
         .table-container {
             overflow-x: auto;
@@ -230,27 +187,6 @@
 
         .content-table th {
             background-color: #f8f9fa;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-            font-weight: bold;
-        }
-
-        th {
-            background-color: #f8f9fa;
-            color: #2c3e50;
-        }
-
-        /* Image Styles */
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 15px 0;
-            border-radius: 4px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         /* Loader Styles */
@@ -289,7 +225,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Maths - Class 7</h1>
+            <h1>Prose - Class 8</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -302,10 +238,9 @@
 
     <section id="chapters">
         <div class="form-container">
-            <h2>Enter the Chapter and Exercise Number</h2>
+            <h2>Enter the Chapter</h2>
             <form id="scrapeForm">
                 <input type="text" id="chapterInput" name="chapter" placeholder="Enter Chapter Number" required>
-                <input type="text" id="exerciseInput" name="exercise" placeholder="Enter Exercise Number" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -333,6 +268,13 @@
     </footer>
 
     <script>
+        // Store current content type information
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set content_type as 'poem' for this page
+            localStorage.setItem('content_type', 'prose');
+            console.log('Content type set as:', localStorage.getItem('content_type'));
+        });
+
         const classSubjects = {
             "5": { 
                 "English 2nd Language": ["content_type", "chapter"],
@@ -396,25 +338,21 @@
                 if (item.type === "text") {
                     const text = item.data.trim();
                     
-                    // Split question and answer if they're on the same line
                     if (text.includes("Answer:") && text.includes("Question")) {
                         const [question, answer] = text.split("Answer:");
                         
-                        // Create question div
                         const questionDiv = document.createElement('div');
                         questionDiv.className = 'question';
                         questionDiv.innerHTML = question.trim();
                         questionDiv.style.marginBottom = '10px';
                         contentDiv.appendChild(questionDiv);
                         
-                        // Create answer div
                         const answerDiv = document.createElement('div');
                         answerDiv.className = 'answer';
                         answerDiv.innerHTML = `Answer: ${answer.trim()}`;
                         answerDiv.style.marginBottom = '20px';
                         contentDiv.appendChild(answerDiv);
                     }
-                    // Handle standalone questions
                     else if (text.startsWith('Question')) {
                         const questionDiv = document.createElement('div');
                         questionDiv.className = 'question';
@@ -422,7 +360,6 @@
                         questionDiv.style.marginBottom = '10px';
                         contentDiv.appendChild(questionDiv);
                     }
-                    // Handle standalone answers
                     else if (text.startsWith('Answer')) {
                         const answerDiv = document.createElement('div');
                         answerDiv.className = 'answer';
@@ -430,7 +367,6 @@
                         answerDiv.style.marginBottom = '20px';
                         contentDiv.appendChild(answerDiv);
                     }
-                    // Handle other text content
                     else {
                         const textDiv = document.createElement('div');
                         textDiv.className = 'content-text';
@@ -456,13 +392,10 @@
                 else if (item.type === "table") {
                     const tableContainer = document.createElement('div');
                     tableContainer.className = 'table-container';
-                    tableContainer.style.margin = '15px 0';
-                    tableContainer.style.overflowX = 'auto';
                     
                     const table = document.createElement('table');
                     table.className = 'content-table';
                     
-                    // Add header if exists
                     if (item.data.header && item.data.header.length > 0) {
                         const thead = document.createElement('thead');
                         const headerRow = document.createElement('tr');
@@ -475,7 +408,6 @@
                         table.appendChild(thead);
                     }
                     
-                    // Add body
                     const tbody = document.createElement('tbody');
                     item.data.rows.forEach(row => {
                         const tr = document.createElement('tr');
@@ -491,38 +423,22 @@
                     tableContainer.appendChild(table);
                     contentDiv.appendChild(tableContainer);
                 }
-                else if (item.type === "list") {
-                    const listContainer = document.createElement('div');
-                    listContainer.className = 'list-container';
-                    listContainer.style.margin = '15px 0';
-                    
-                    const list = document.createElement('ul');
-                    list.className = 'content-list';
-                    item.data.forEach(listItem => {
-                        const li = document.createElement('li');
-                        li.textContent = listItem;
-                        list.appendChild(li);
-                    });
-                    
-                    listContainer.appendChild(list);
-                    contentDiv.appendChild(listContainer);
-                }
             });
         }
 
         function scrape() {
-            const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '7';
+            const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '8';
             const subject = localStorage.getItem('subject');
+            const content_type = localStorage.getItem('content_type'); // Get the content_type (poem)
             const chapter = document.getElementById('chapterInput').value.trim();
-            const exercise = document.getElementById('exerciseInput').value.trim();
 
             if (!class_number || !subject) {
                 alert('Class and Subject are required. Please go back and fill them in.');
                 return;
             }
 
-            if (!chapter || !exercise) {
-                alert('Chapter and Exercise are required!');
+            if (!chapter) {
+                alert('Chapter is required!');
                 return;
             }
 
@@ -532,8 +448,8 @@
             const data = {
                 class: class_number,
                 subject: subject,
-                chapter: chapter,
-                exercise: exercise
+                content_type: content_type, // Include content_type in the request
+                chapter: chapter
             };
 
             console.log('Sending request with data:', data);
@@ -563,7 +479,6 @@
             });
         }
 
-        // Event Listeners
         document.getElementById('scrapeForm').addEventListener('submit', function(event) {
             event.preventDefault();
             scrape();
