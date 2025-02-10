@@ -938,8 +938,32 @@ def prose6():
 @app.route('/class-8/English 2nd Language/Poem')
 def poem7():
     return render_template('poem6.html')
-@app.route('/class-8/English 2nd Language/Prose')
-def prose7():
+BASE_URL = "https://kseebsolutions.guru/kseeb-solutions-class-8-english-chapter-"
+
+@app.route('/class-8/English 2nd Language/Prose', methods=['GET', 'POST'])
+def prose223():
+    if request.method == 'POST':
+        chapter = request.form.get('chapter')
+        if chapter:
+            # Construct the full URL
+            url = f"{BASE_URL}{chapter}/"
+            
+            # Fetch the content from the external URL
+            response = requests.get(url)
+            if response.status_code == 200:
+                # Parse the HTML content
+                soup = BeautifulSoup(response.content, 'html.parser')
+                
+                # Extract the relevant content (e.g., the main article)
+                content = soup.find('div', class_='entry-content')  # Adjust the selector as needed
+                if content:
+                    return render_template('prose223.html', content=content.prettify())
+                else:
+                    return render_template('prose223.html', error="Content not found on the external site.")
+            else:
+                return render_template('prose223.html', error="Failed to fetch content from the external site.")
+        else:
+            return render_template('prose223.html', error="Chapter number is required.")
     return render_template('prose223.html')
 
 

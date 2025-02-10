@@ -155,33 +155,147 @@
         });
 
         function scrape() {
-            const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '8';
-            const subject = localStorage.getItem('subject');
-            const content_type = localStorage.getItem('content_type'); // Get the content_type (prose)
-            const chapter = document.getElementById('chapterInput').value.trim();
+    const class_number = localStorage.getItem('class_number')?.replace('/class-', '') || '8';
+    const subject = localStorage.getItem('subject');
+    const content_type = localStorage.getItem('content_type');
+    const chapter = document.getElementById('chapterInput').value.trim();
 
-            if (!class_number || !subject) {
-                alert('Class and Subject are required. Please go back and fill them in.');
-                return;
-            }
+    if (!class_number || !subject) {
+        alert('Class and Subject are required. Please go back and fill them in.');
+        return;
+    }
 
-            if (!chapter) {
-                alert('Chapter is required!');
-                return;
-            }
+    if (!chapter) {
+        alert('Chapter is required!');
+        return;
+    }
 
-            // Construct the URL based on the chapter number
-            const baseUrl = "https://kseebsolutions.guru/kseeb-solutions-class-8-english-chapter-";
-            const chapterUrl = `${baseUrl}${chapter}/`;
+    const data = {
+        class: class_number,
+        subject: subject,
+        content_type: content_type,
+        chapter: chapter
+    };
 
-            // Redirect the user to the constructed URL
-            window.location.href = chapterUrl;
+    console.log('Sending request with data:', data);
+    showLoadingModal();
+
+    fetch('/scrape', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Scraped content:', data);
+        displayContent(data);
+    })
+    .catch(error => {
+        console.error('Scraping failed:', error);
+        alert('An error occurred during scraping. Check the console for details.');
+        hideLoadingModal();
+    });
+}
 
-        document.getElementById('scrapeForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            scrape();
-        });
-    </script>
+function displayContent(data) {
+    hideLoadingModal();
+    const modal = document.getElementById('scrapedContentModal');
+    const contentDiv = document.getElementById('scrapedContent');
+    contentDiv.innerHTML = '';
+
+    if (data.error) {
+        contentDiv.innerHTML = `<p class="error">Error: ${data.error}</p>`;
+        modal.style.display = 'block';
+        return;
+    }
+
+    data.forEach((item) => {
+        if (item.type === "text") {
+            const textDiv = document.createElement('div');
+            textDiv.className = 'content-text';
+            textDiv.innerHTML = item.data;
+            contentDiv.appendChild(textDiv);
+        } else if (item.type === "image") {
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'content-image';
+            const img = document.createElement('img');
+            img.src = item.data;
+            img.alt = "Content Image";
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+            img.style.margin = '15px 0';
+            imgContainer.appendChild(img);
+            contentDiv.appendChild(imgContainer);
+        } else if (item.type === "table") {
+            const tableContainer = document.createElement('div');
+            tableContainer.className = 'table-container';
+            const table = document.createElement('table');
+            table.className = 'content-table';
+            if (item.data.header && item.data.header.length > 0) {
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                item.data.header.forEach(cell => {
+                    const th = document.createElement('th');
+                    th.textContent = cell;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+            }
+            const tbody = document.createElement('tbody');
+            item.data.rows.forEach(row => {
+                const tr = document.createElement('tr');
+                row.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            tableContainer.appendChild(table);
+            contentDiv.appendChild(tableContainer);
+        } else if (item.type === "list") {
+            const listContainer = document.createElement('div');
+            listContainer.className = 'list-container';
+            const list = document.createElement('ul');
+            list.className = 'answer-list';
+            item.data.forEach(listItem => {
+                const li = document.createElement('li');
+                li.className = 'answer-list-item';
+                li.textContent = listItem;
+                list.appendChild(li);
+            });
+            listContainer.appendChild(list);
+            contentDiv.appendChild(listContainer);
+        }
+    });
+
+    modal.style.display = 'block';
+}
+
+document.getElementById('scrapeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    scrape();
+});
+
+document.getElementById('closeModal').addEventListener('click', function() {
+    document.getElementById('scrapedContentModal').style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('scrapedContentModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+</script>
 </body>
 </html>
