@@ -250,7 +250,13 @@
         hideLoadingModal();
     });
 }
+function showLoadingModal() {
+            document.getElementById('loadingModal').style.display = 'block';
+        }
 
+        function hideLoadingModal() {
+            document.getElementById('loadingModal').style.display = 'none';
+        }
 function displayContent(data) {
     hideLoadingModal();
     const modal = document.getElementById('scrapedContentModal');
