@@ -121,6 +121,86 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+/* Scraped Content Styles */
+.scraped-content {
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.scraped-content p {
+    margin: 10px 0;
+}
+
+/* Question and Answer Styles */
+.question {
+    font-weight: bold;
+    margin-top: 20px;
+    color: #2c3e50;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-left: 4px solid #3498db;
+    border-radius: 4px;
+}
+
+.answer {
+    margin: 10px 0 20px 20px;
+    color: #34495e;
+    background-color: #fff;
+    padding: 10px;
+    border-left: 4px solid #2ecc71;
+    border-radius: 4px;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    margin: 15px 0;
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.content-table th,
+.content-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.content-table th {
+    background-color: #f8f9fa;
+}
+
+/* List Styles */
+.list-container {
+    margin: 15px 0;
+}
+
+.answer-list {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.answer-list-item {
+    margin: 8px 0;
+    padding-left: 10px;
+}
+
+/* Image Styles */
+.content-image {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.content-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 .close {
     color: #aaa;
@@ -257,7 +337,7 @@ function showLoadingModal() {
         function hideLoadingModal() {
             document.getElementById('loadingModal').style.display = 'none';
         }
-function displayContent(data) {
+        function displayContent(data) {
     hideLoadingModal();
     const modal = document.getElementById('scrapedContentModal');
     const contentDiv = document.getElementById('scrapedContent');
@@ -271,26 +351,72 @@ function displayContent(data) {
 
     data.forEach((item) => {
         if (item.type === "text") {
-            const textDiv = document.createElement('div');
-            textDiv.className = 'content-text';
-            textDiv.innerHTML = item.data;
-            contentDiv.appendChild(textDiv);
-        } else if (item.type === "image") {
+            const text = item.data.trim();
+
+            // Handle Questions and Answers
+            if (text.includes("Answer:") && text.includes("Question")) {
+                const [question, answer] = text.split("Answer:");
+
+                // Create Question Div
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = question.trim();
+                contentDiv.appendChild(questionDiv);
+
+                // Create Answer Div
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer';
+                answerDiv.innerHTML = `Answer: ${answer.trim()}`;
+                contentDiv.appendChild(answerDiv);
+            }
+            // Handle Questions
+            else if (text.startsWith('Question')) {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = text;
+                contentDiv.appendChild(questionDiv);
+            }
+            // Handle Answers
+            else if (text.startsWith('Answer')) {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer';
+                answerDiv.innerHTML = text;
+                contentDiv.appendChild(answerDiv);
+            }
+            // Handle Normal Text
+            else {
+                const textDiv = document.createElement('div');
+                textDiv.className = 'content-text';
+                textDiv.innerHTML = text;
+                contentDiv.appendChild(textDiv);
+            }
+        }
+        // Handle Images
+        else if (item.type === "image") {
             const imgContainer = document.createElement('div');
             imgContainer.className = 'content-image';
+
             const img = document.createElement('img');
             img.src = item.data;
             img.alt = "Content Image";
             img.style.maxWidth = '100%';
             img.style.height = 'auto';
             img.style.margin = '15px 0';
+            img.style.borderRadius = '4px';
+            img.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+
             imgContainer.appendChild(img);
             contentDiv.appendChild(imgContainer);
-        } else if (item.type === "table") {
+        }
+        // Handle Tables
+        else if (item.type === "table") {
             const tableContainer = document.createElement('div');
             tableContainer.className = 'table-container';
+
             const table = document.createElement('table');
             table.className = 'content-table';
+
+            // Add Table Header
             if (item.data.header && item.data.header.length > 0) {
                 const thead = document.createElement('thead');
                 const headerRow = document.createElement('tr');
@@ -302,6 +428,8 @@ function displayContent(data) {
                 thead.appendChild(headerRow);
                 table.appendChild(thead);
             }
+
+            // Add Table Body
             const tbody = document.createElement('tbody');
             item.data.rows.forEach(row => {
                 const tr = document.createElement('tr');
@@ -313,11 +441,15 @@ function displayContent(data) {
                 tbody.appendChild(tr);
             });
             table.appendChild(tbody);
+
             tableContainer.appendChild(table);
             contentDiv.appendChild(tableContainer);
-        } else if (item.type === "list") {
+        }
+        // Handle Lists
+        else if (item.type === "list") {
             const listContainer = document.createElement('div');
             listContainer.className = 'list-container';
+
             const list = document.createElement('ul');
             list.className = 'answer-list';
             item.data.forEach(listItem => {
@@ -326,6 +458,7 @@ function displayContent(data) {
                 li.textContent = listItem;
                 list.appendChild(li);
             });
+
             listContainer.appendChild(list);
             contentDiv.appendChild(listContainer);
         }
