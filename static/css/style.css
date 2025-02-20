@@ -1,10 +1,10 @@
-.body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f9f9f9;
     color: #333;
+    background: url('../imgs/CL.png') no-repeat center center fixed;
 }
 
 .container {
@@ -15,7 +15,7 @@
 
 /* Header Styles */
 header {
-    background-color: #2c3e50;
+    background: rgba(4, 12, 19, 0.815);
     color: white;
     padding: 1rem 0;
     text-align: center;
@@ -264,7 +264,7 @@ img {
 
 /* Footer Styles */
 footer {
-    background-color: #2c3e50;
+    background: rgba(4, 12, 19, 0.815);
     color: white;
     text-align: center;
     padding: 1rem 0;

@@ -3,7 +3,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: linear-gradient(135deg, #8293a9,#052435); /* Dark Blue to Yellow */
+    background: linear-gradient(135deg, #5c7ca6,#052435); /* Dark Blue to Yellow */
     color: white;
     border: none;
     padding: 15px;
@@ -97,7 +97,7 @@
 }
 
 .message.bot p {
-    background: #f0f0f0;
+    background: #fa6969;
     border-top-left-radius: 5px;
 }
 
@@ -107,7 +107,7 @@
 
 .message.user p {
     background: #007bff;
-    color: white;
+    color: rgb(118, 156, 202);
     border-top-right-radius: 5px;
 }
 
@@ -124,7 +124,7 @@
 }
 
 .message.bot p pre {
-    background: #f8f8f8;
+    background: hsl(0, 0%, 97%);
     padding: 10px;
     border-radius: 5px;
     overflow-x: auto;
@@ -150,7 +150,7 @@
     height: 12px;
     border: 2px solid #007bff;
     border-radius: 50%;
-    border-top-color: transparent;
+    border-top-color: #007bff;
     animation: spin 1s linear infinite;
 }
 
