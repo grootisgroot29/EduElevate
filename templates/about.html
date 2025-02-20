@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About EduLearn</title>
+    <title>About EduElevate</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <div class="container">
-            <h1>EduLearn</h1>
+            <h1>EduElevate</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -25,30 +25,20 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <h2>About EduLearn</h2>
-            <p>Welcome to EduLearn, your one-stop destination for quality educational resources. We are dedicated to empowering learners with a comprehensive repository of knowledge, including interactive courses, subject notes, and worksheets to help students excel.</p>
+            <h2>About EduElevate</h2>
+            <p>Welcome to EduElevate, your one-stop destination for quality educational resources. We are dedicated to empowering learners with a comprehensive repository of knowledge, including an interactive chatbot, subject notes, and worksheets to help students excel.</p>
             
             <h3>Our Educational Repository</h3>
-            <p>At EduLearn, we believe in making education accessible and efficient for everyone. Our repository offers well-structured learning materials in a variety of subjects, from Mathematics and Science to Language studies. Our goal is to enhance learning through detailed notes, problem-solving worksheets, and hands-on practice materials.</p>
-            
-            <p>To explore our educational resources, visit our online repository:</p>
-            <p><a href="https://snehajyothi.org/" target="_blank" class="Sneha Jyothi Orphanage Website">EduLearn Repository</a></p>
-            
-            <h3>Why Choose EduLearn?</h3>
-            <ul>
-                <li>Comprehensive and up-to-date course materials</li>
-                <li>Easy-to-navigate repository with diverse subjects</li>
-                <li>Access to worksheets and practice exams for deeper learning</li>
-                <li>Flexible and convenient learning experience</li>
-            </ul>
+            <p>At EduElevate, we believe in making education accessible and efficient for everyone. Our repository offers well-structured learning materials in a variety of subjects, from Mathematics and Science to Language studies. Our goal is to enhance learning through detailed notes, problem-solving worksheets, and hands-on practice materials.</p>
         </div>
     </section>
 
     <!-- Footer Section -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 EduLearn. All Rights Reserved.</p>
+            <p>&copy; 2024 EduElevate. All Rights Reserved.</p>
         </div>
     </footer>
+    {% include 'components/chatbot.html' %}
 </body>
 </html>

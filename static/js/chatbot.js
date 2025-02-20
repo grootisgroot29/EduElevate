@@ -4,27 +4,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const messagesContainer = document.getElementById('chat-messages');
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-message');
+    const toggleButton = document.getElementById('chatbot-toggle');
 
     // Get the current subject from localStorage
     const currentSubject = localStorage.getItem('subject') || 'General';
 
-    // Minimize/Maximize chat
-    minimizeButton.addEventListener('click', () => {
-        chatbot.classList.toggle('minimized');
-        minimizeButton.textContent = chatbot.classList.contains('minimized') ? '+' : '−';
+    // Initially hide the chatbot
+    chatbot.style.display = 'none';
+
+    // Add toggle button event listener
+    toggleButton.addEventListener('click', () => {
+        console.log('Chatbot icon clicked!');
+        console.log('Current display:', chatbot.style.display);
+        if (chatbot.style.display === 'none' || chatbot.style.display === '') {
+            chatbot.style.display = 'flex';
+            userInput.focus(); // Focus on input when chatbot opens
+        } else {
+            chatbot.style.display = 'none';
+        }
     });
 
-    // Toggle chatbot visibility
-    function toggleChatbot() {
-        console.log('Chatbot icon clicked!'); // Debugging statement
-        const chatbot = document.getElementById('chatbot');
-        console.log('Current display:', chatbot.style.display); // Debugging statement
-        if (chatbot.style.display === 'none' || chatbot.style.display === '') {
-            chatbot.style.display = 'flex'; // Show the chatbot
-        } else {
-            chatbot.style.display = 'none'; // Hide the chatbot
-        }
-    }
+    // Minimize/Maximize chat
+    minimizeButton.addEventListener('click', () => {
+        chatbot.style.display = 'none';
+    });
 
     // Send message function
     async function sendMessage() {
@@ -95,7 +98,4 @@ document.addEventListener('DOMContentLoaded', function() {
             sendMessage();
         }
     });
-
-    // Add initial greeting
-    addMessage('Hello! How can I help you today?', 'bot');
 });

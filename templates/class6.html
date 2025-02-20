@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/bondist');
+        </style>
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <div class="container">
-            <h1>Welcome to My Website</h1>
+            <h1>EduElevate</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('englishc61') }}" class="btn-nav" onclick="storeButtonText(this)">English 1st Language</a></li>
@@ -25,8 +28,8 @@
 
       <!-- Welcome Section -->
       <section id="welcome" class="container">
-        <h2>Hello, Everyone!</h2>
-        <p>Explore various subjects by clicking the buttons above.</p>
+        <h2>Welcome to EduElevate!</h2>
+        <p>Navigate to various subjects worksheets by clicking the buttons above.</p>
         <a href="{{ url_for('about') }}" class="btn">Learn More</a>
     </section>
 
