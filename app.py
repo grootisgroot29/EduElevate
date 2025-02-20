@@ -755,7 +755,7 @@ def get_matching_url(subject, class_number, content_type, chapter, part, exercis
                     return u
     return None
 # Configure Gemini
-DEFAULT_API_KEY = "AIzaSyB00e8r_QR0D94j74f1m6EhrWqu2f2iwC4"
+DEFAULT_API_KEY = "AIzaSyB9ooSV2Uq6olPlnLlR0cLHDn6_RdObs2I"
 genai.configure(api_key=DEFAULT_API_KEY)
 model = genai.GenerativeModel('gemini-pro',
                             generation_config={
