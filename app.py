@@ -2,6 +2,8 @@ import re
 from flask import Flask, jsonify, request, render_template
 import requests
 from bs4 import BeautifulSoup
+import google.generativeai as genai
+import markdown
 
 app = Flask(__name__)
 
@@ -724,31 +726,7 @@ def is_answer(text):
     
     return any(text_lower.startswith(starter.lower()) for starter in answer_starters)
 
-# def get_matching_url(subject, class_number, content_type, chapter, part, exercise):
-#     """Find the matching URL based on subject and criteria."""
-#     def normalize_part(part):
-#         roman_to_int = {
-#             "I": "1", "II": "2", "III": "3", "IV": "4", "V": "5",
-#             "VI": "6", "VII": "7", "VIII": "8", "IX": "9", "X": "10"
-#         }
-#         return roman_to_int.get(part.upper(), part)
 
-#     normalized_part = normalize_part(part) if part else None
-#     urls = URLs.get(subject, [])
-    
-#     # Iterate over the URLs to find the matching one
-#     for u in urls:
-#         if f"class-{class_number}" in u:
-#             if content_type and content_type.lower() not in u:
-#                 continue
-#             if chapter and f"chapter-{chapter}" in u:
-#                 if normalized_part and f"part-{normalized_part}" in u:
-#                     return u
-#                 if exercise and f"ex-{exercise.replace('.', '-').lower()}" in u:
-#                     return u
-#                 if not part and not exercise:
-#                     return u
-#     return None
 def get_matching_url(subject, class_number, content_type, chapter, part, exercise):
     """Find the matching URL based on subject and criteria."""
     def normalize_part(part):
@@ -776,6 +754,15 @@ def get_matching_url(subject, class_number, content_type, chapter, part, exercis
                 if not part and not exercise:
                     return u
     return None
+# Configure Gemini
+DEFAULT_API_KEY = "AIzaSyB00e8r_QR0D94j74f1m6EhrWqu2f2iwC4"
+genai.configure(api_key=DEFAULT_API_KEY)
+model = genai.GenerativeModel('gemini-pro',
+                            generation_config={
+                                'temperature': 0.7,
+                                'max_output_tokens': 2048,
+                            })
+chat = model.start_chat(history=[])
 
 @app.before_request
 def log_request_info():
@@ -785,6 +772,16 @@ def log_request_info():
 def index():
     """Serve the frontend."""
     return render_template('Edu.html')
+@app.route('/send_message', methods=['POST'])
+def send_message():
+    try:
+        user_message = request.json['message']
+        response = chat.send_message(user_message)
+        # Convert markdown to HTML for better formatting
+        formatted_response = markdown.markdown(response.text)
+        return jsonify({'response': formatted_response})
+    except Exception as e:
+        return jsonify({'response': f"Error: {str(e)}"})
 @app.route('/courses')
 def courses():
     return render_template('courses.html')

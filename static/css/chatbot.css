@@ -1,0 +1,159 @@
+/* Floating Chatbot Button */
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #002f6c, #d99fea); /* Dark Blue to Yellow */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+/* Hover effect */
+.chatbot-button:hover {
+    transform: scale(1.1);
+}
+
+/* Chatbot Container */
+.chatbot-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: floatUpDown 3s infinite alternate ease-in-out;
+    z-index: 1000;
+}
+
+/* Floating Animation */
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Chat Header */
+.chatbot-header {
+    background: linear-gradient(135deg, #002f6c, #d99fea);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Chat Body */
+.chatbot-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* Chat Input */
+.chatbot-footer {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-footer input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.chatbot-footer button {
+    background: linear-gradient(135deg, #002f6c, #d99fea);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Message Styles */
+.message {
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.message p {
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin: 0;
+}
+
+.message.bot p {
+    background: #f0f0f0;
+    border-top-left-radius: 5px;
+}
+
+.message.user {
+    margin-left: auto;
+}
+
+.message.user p {
+    background: #007bff;
+    color: white;
+    border-top-right-radius: 5px;
+}
+
+/* Markdown styles within bot messages */
+.message.bot p {
+    line-height: 1.5;
+}
+
+.message.bot p code {
+    background: #e8e8e8;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.message.bot p pre {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+
+.message.bot p ul, 
+.message.bot p ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+/* Loading indicator */
+.message.loading p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.message.loading p::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
