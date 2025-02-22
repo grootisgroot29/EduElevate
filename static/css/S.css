@@ -35,6 +35,7 @@ header h1 {
     margin: 0;
     font-size: 3rem;
     font-weight: bold;
+    font-family: 'bondist';
 }
 
 header nav ul {
@@ -68,7 +69,7 @@ header nav ul li a:hover {
 }
 
 #hero h2 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 20px;
     color: #f4f4f4;
 }

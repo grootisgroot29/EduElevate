@@ -29,6 +29,7 @@ header h1 {
     color: #fff;
     margin: 0;
     font-family: 'bondist';
+    font-weight: bold;
 }
 
 header nav ul {
@@ -64,7 +65,7 @@ header nav ul li a:hover {
 }
 
 #about h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #ebd681;
     margin-bottom: 20px;
 }
