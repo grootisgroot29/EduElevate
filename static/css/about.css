@@ -21,15 +21,16 @@ body {
 /* Header */
 header {
     background-color: #00000049;
-    padding: 1rem;
     text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #f4f4f4;
 }
 
 header h1 {
-    color: #fff;
     margin: 0;
-    font-family: 'bondist';
+    font-size: 3rem;
     font-weight: bold;
+    font-family: 'bondist';
 }
 
 header nav ul {
