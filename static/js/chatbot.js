@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Minimize/Maximize chat
-    minimizeButton.addEventListener('click', () => {
-        chatbot.style.display = 'none';
-    });
+ 
 
     // Send message function
     async function sendMessage() {
