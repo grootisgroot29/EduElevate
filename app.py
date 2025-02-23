@@ -988,35 +988,7 @@ def prose223():
         return jsonify(scraped_data)
     return render_template('prose223.html')
 
-# @app.route('/scrape', methods=['POST'])
-# def scrape():
-#     try:
-#         data = request.json
-#         app.logger.debug(f"Received data: {data}")
-#         class_number = data.get('class')
-#         subject = data.get('subject')
-#         chapter = data.get('chapter')
-#         part = data.get('part')  # Extract the part value
 
-#         if not all([class_number, subject, chapter]):
-#             return jsonify({"error": "Missing required fields"}), 400
-
-#         # Get the matching URL
-#         url = get_matching_url(subject, class_number, None, chapter, part, None)
-
-#         if not url:
-#             return jsonify({"error": "No matching URL found"}), 404
-
-#         # Scrape the content
-#         content = scrape_chapter_content(url)
-#         if not content:
-#             return jsonify({"error": "No content found"}), 404
-
-#         return jsonify(content)
-
-#     except Exception as e:
-#         app.logger.error(f"Error in scrape route: {str(e)}")
-#         return jsonify({"error": "An internal server error occurred"}), 500
 @app.route('/scrape', methods=['POST'])
 def scrape():
     try:
