@@ -755,13 +755,23 @@ def get_matching_url(subject, class_number, content_type, chapter, part, exercis
                     return u
     return None
 # Configure Gemini
-DEFAULT_API_KEY = "AIzaSyB9ooSV2Uq6olPlnLlR0cLHDn6_RdObs2I"
-genai.configure(api_key=DEFAULT_API_KEY)
+# Load API key from environment variables
+API_KEY = os.getenv("API_KEY")  
+
+if not API_KEY:
+    raise ValueError("API_KEY is not set. Make sure it's stored in the environment variables.")
+
+# Configure Generative AI with the key
+genai.configure(api_key=API_KEY)
+
+# Create the model instance
 model = genai.GenerativeModel('gemini-pro',
-                            generation_config={
-                                'temperature': 0.7,
-                                'max_output_tokens': 2048,
-                            })
+                              generation_config={
+                                  'temperature': 0.7,
+                                  'max_output_tokens': 2048,
+                              })
+
+# Start chat session
 chat = model.start_chat(history=[])
 
 @app.before_request
