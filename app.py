@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import google.generativeai as genai
 import markdown
-
+import os
 app = Flask(__name__)
 
 # Example URLs for different subjects (Update with actual URLs)
